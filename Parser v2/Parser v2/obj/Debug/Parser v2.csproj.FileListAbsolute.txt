@@ -28,3 +28,13 @@ F:\Github\Project_4\Parser v2\Parser v2\bin\Debug\Npgsql.xml
 F:\Github\Project_4\Parser v2\Parser v2\obj\Debug\Parser v2.csprojResolveAssemblyReference.cache
 F:\Github\Project_4\Parser v2\Parser v2\obj\Debug\Parser_v2.ParserGUI.resources
 F:\Github\Project_4\Parser v2\Parser v2\obj\Debug\Parser v2.csproj.GenerateResource.Cache
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\bin\Debug\Parser v2.exe.config
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\obj\Debug\Parser v2.exe
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\obj\Debug\Parser v2.pdb
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\bin\Debug\Parser v2.exe
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\bin\Debug\Parser v2.pdb
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\bin\Debug\Npgsql.dll
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\bin\Debug\Npgsql.xml
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\obj\Debug\Parser v2.csprojResolveAssemblyReference.cache
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\obj\Debug\Parser_v2.ParserGUI.resources
+C:\Users\Eljakim Herrewijnen\Documents\GitHub\Project_4\Parser v2\Parser v2\obj\Debug\Parser v2.csproj.GenerateResource.Cache
