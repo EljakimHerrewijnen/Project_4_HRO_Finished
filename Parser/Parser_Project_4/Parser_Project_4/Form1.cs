@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Parser_Project_4
 {
@@ -39,9 +40,8 @@ namespace Parser_Project_4
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.Multiselect = false;
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
-
+                
                 DialogResult messageboxresult = MessageBox.Show("Do you want to parse the selected file immediately?", "Parse File",  MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (messageboxresult == DialogResult.Yes) { } }
-
         }
     }
 }
