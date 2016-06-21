@@ -29,24 +29,7 @@ namespace Parser_v2
                 if (c != (char)44) { TempString1 += c; }
                 else if (TempString1.GetType() == typeof(string) && c.GetType() == typeof(int)) {  }
             }
-
-
-
-
-
-
-
-
-
-
             return Query;
         }
-
-
-        
-
-        
-
-
     }
 }
