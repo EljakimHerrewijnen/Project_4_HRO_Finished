@@ -49,8 +49,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.RB_Fietstrommels = new System.Windows.Forms.RadioButton();
+            this.RB_Fietsendiefstal = new System.Windows.Forms.RadioButton();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +88,7 @@
             this.newFileToolStripMenuItem.Name = "newFileToolStripMenuItem";
             this.newFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newFileToolStripMenuItem.Text = "New File";
+            this.newFileToolStripMenuItem.Click += new System.EventHandler(this.newFileToolStripMenuItem_Click);
             // 
             // parseFileToolStripMenuItem
             // 
@@ -214,35 +216,37 @@
             this.button1.Text = "Send to database";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // RB_Fietstrommels
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(225, 330);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 13;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "fietstrommels";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.RB_Fietstrommels.AutoSize = true;
+            this.RB_Fietstrommels.Location = new System.Drawing.Point(225, 330);
+            this.RB_Fietstrommels.Name = "RB_Fietstrommels";
+            this.RB_Fietstrommels.Size = new System.Drawing.Size(85, 17);
+            this.RB_Fietstrommels.TabIndex = 13;
+            this.RB_Fietstrommels.TabStop = true;
+            this.RB_Fietstrommels.Text = "fietstrommels";
+            this.RB_Fietstrommels.UseVisualStyleBackColor = true;
+            this.RB_Fietstrommels.CheckedChanged += new System.EventHandler(this.RB_Fietstrommels_CheckedChanged);
             // 
-            // radioButton2
+            // RB_Fietsendiefstal
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(225, 307);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(92, 17);
-            this.radioButton2.TabIndex = 14;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Fietsendiefstal";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.RB_Fietsendiefstal.AutoSize = true;
+            this.RB_Fietsendiefstal.Location = new System.Drawing.Point(225, 307);
+            this.RB_Fietsendiefstal.Name = "RB_Fietsendiefstal";
+            this.RB_Fietsendiefstal.Size = new System.Drawing.Size(92, 17);
+            this.RB_Fietsendiefstal.TabIndex = 14;
+            this.RB_Fietsendiefstal.TabStop = true;
+            this.RB_Fietsendiefstal.Text = "Fietsendiefstal";
+            this.RB_Fietsendiefstal.UseVisualStyleBackColor = true;
+            this.RB_Fietsendiefstal.CheckedChanged += new System.EventHandler(this.RB_Fietsendiefstal_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 383);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.RB_Fietsendiefstal);
+            this.Controls.Add(this.RB_Fietstrommels);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -289,8 +293,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton RB_Fietstrommels;
+        private System.Windows.Forms.RadioButton RB_Fietsendiefstal;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
