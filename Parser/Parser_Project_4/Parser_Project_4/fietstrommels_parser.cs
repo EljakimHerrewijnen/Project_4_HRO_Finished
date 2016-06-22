@@ -10,8 +10,7 @@ namespace Parser_Project_4
 {
     class fietstrommels_parser
     {
-        Excel.Application xlApp = new
-        Microsoft.Office.Interop.Excel.Application();
+        Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
 
 
 
