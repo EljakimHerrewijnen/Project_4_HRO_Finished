@@ -16,6 +16,8 @@ namespace Parser_Project_4
     {
         public static Form1 _Form1;
         public string Filepath;
+        public string query;
+        public string Query { set { query = value; } }
         public string filepath { get { return filepath; } set { Filepath = value; } }
         public string excelfile { get { return excelfile;  } set { excelfile = value; } }
         public Form1()
@@ -62,6 +64,12 @@ namespace Parser_Project_4
         {
             Fietsendiefstal fietsendiefstal = new Fietsendiefstal();
             Fietsendiefstal.OpenFile();
+            textBox1.Text = query;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "") { System.Windows.Forms.Clipboard.SetText(textBox1.Text); }
         }
     }
 }
