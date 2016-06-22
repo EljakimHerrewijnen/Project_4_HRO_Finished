@@ -52,7 +52,13 @@ namespace Parser_Project_4
                 + (char)34 + "Eindtijd" + (char)34 + "varchar(256) ,"
                 + (char)34 + "Gemiddelde jaar" + (char)34 + "varchar(256) ,"
                 + (char)34 + "Gemiddelde maand" + (char)34 + "varchar(256) ,"
-                + (char)34 + "Gemiddelde dagsoort" + (char)34 + " varchar(256)," + (char)34 + "Gemiddelde dagdeel (6 uren)" + (char)34 + " varchar(256)," + (char)34 + "Trefwoord" + (char)34 + " varchar(256)," + (char)34 + "object" + (char)34 + " varchar(256)," + (char)34 + "merk" + (char)34 + " varchar(256)," + (char)34 + "type" + (char)34 + " varchar(256)," + (char)34 + "kleur" + (char)34 +" varchar(256))";
+                + (char)34 + "Gemiddelde dagsoort" + (char)34 + " varchar(256)," 
+                + (char)34 + "Gemiddelde dagdeel (6 uren)" + (char)34 + " varchar(256)," 
+                + (char)34 + "Trefwoord" + (char)34 + " varchar(256)," 
+                + (char)34 + "object" + (char)34 + " varchar(256)," 
+                + (char)34 + "merk" + (char)34 + " varchar(256)," 
+                + (char)34 + "type" + (char)34 + " varchar(256)," 
+                + (char)34 + "kleur" + (char)34 +" varchar(256))";
 
             for(int i = 1; i < 20; i++)
             {
