@@ -52,19 +52,24 @@ namespace Parser_Project_4
                 string ExcelPath = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
                 //    Form1._Form1.excelfile = ExcelFile;
                 Form1._Form1.filepath = openFileDialog1.FileName;
-                DialogResult messageboxresult = MessageBox.Show("Do you want to parse the selected file immediately?", "Parse File",  MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (messageboxresult == DialogResult.Yes) { } }
+                DialogResult messageboxresult = MessageBox.Show("Do you want to parse the selected file immediately?", "Parse File",  MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (messageboxresult == DialogResult.Yes) { ParseAFile(); } }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine(Filepath);
         }
-
-        private void parseFileToolStripMenuItem_Click(object sender, EventArgs e)
+        public void ParseAFile()
         {
             Fietsendiefstal fietsendiefstal = new Fietsendiefstal();
             Fietsendiefstal.OpenFile();
             textBox1.Text = query;
+
+        }
+
+        private void parseFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ParseAFile();
         }
 
         private void button2_Click(object sender, EventArgs e)

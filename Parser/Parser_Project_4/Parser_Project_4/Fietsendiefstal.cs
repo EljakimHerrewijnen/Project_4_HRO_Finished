@@ -83,20 +83,20 @@ namespace Parser_Project_4
                 + (char)34 + "object" + (char)34 + " varchar(256)," 
                 + (char)34 + "merk" + (char)34 + " varchar(256)," 
                 + (char)34 + "type" + (char)34 + " varchar(256)," 
-                + (char)34 + "kleur" + (char)34 +" varchar(256))";
+                + (char)34 + "kleur" + (char)34 +" varchar(256));";
 
-            for(int i = 1; i < 4; i++)
+            for(int i = 1; i < sheet.Rows.Count; i++)
             {
                 if (i != 1) { query += "\n INSERT INTO fietsendiefstal(" + tables + ")  VALUES ("; }
                 for(int j = 1; j <= 25; j++)
                 {
-                    string Cellvalues = sheet.Cells[i, j].value;
+                    var Cellvalues = sheet.Cells[i, j].Value;
                     if (i == 1) { break; }
                     if(j == 13) { query += "\n"; }
                     query += (char)39;
                     query += Cellvalues;
                     query += (char)39 + " ,";  
-                    if(j == 7) { query = query.Remove(query.Length - 20); query += ") \n"; }
+                    if(j == 25) { query = query.Remove(query.Length - 1); query += "); \n"; }
                 }
                 Console.WriteLine("Parsed one line..." + i);
             }
