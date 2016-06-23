@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         String[] items={"Pie","Line","Etc"};
         itemList=new ArrayList<String>(Arrays.asList(items));
         adapter=new ArrayAdapter<String>(this,R.layout.list_item,R.id.checkbox,itemList);
-        ExpandableListView listV=(ExpandableListView) findViewById(R.id.listView);
+        ListView listV=(ListView)findViewById(R.id.listView);
         listV.setAdapter(adapter);
     }
 
