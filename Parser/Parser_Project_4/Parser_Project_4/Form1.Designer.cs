@@ -38,9 +38,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.TB_IPaddr = new System.Windows.Forms.TextBox();
+            this.TB_Port = new System.Windows.Forms.TextBox();
+            this.TB_Datab = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -81,28 +81,28 @@
             // newFileToolStripMenuItem
             // 
             this.newFileToolStripMenuItem.Name = "newFileToolStripMenuItem";
-            this.newFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.newFileToolStripMenuItem.Text = "New File";
             this.newFileToolStripMenuItem.Click += new System.EventHandler(this.newFileToolStripMenuItem_Click);
             // 
             // parseFileToolStripMenuItem
             // 
             this.parseFileToolStripMenuItem.Name = "parseFileToolStripMenuItem";
-            this.parseFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.parseFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.parseFileToolStripMenuItem.Text = "Parse File";
             this.parseFileToolStripMenuItem.Click += new System.EventHandler(this.parseFileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.saveAsToolStripMenuItem.Text = "Save as";
             // 
             // aboutToolStripMenuItem
@@ -124,29 +124,29 @@
             this.textBox1.Size = new System.Drawing.Size(477, 218);
             this.textBox1.TabIndex = 1;
             // 
-            // textBox2
+            // TB_IPaddr
             // 
-            this.textBox2.Location = new System.Drawing.Point(105, 252);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "localhost";
+            this.TB_IPaddr.Location = new System.Drawing.Point(105, 252);
+            this.TB_IPaddr.Name = "TB_IPaddr";
+            this.TB_IPaddr.Size = new System.Drawing.Size(100, 20);
+            this.TB_IPaddr.TabIndex = 2;
+            this.TB_IPaddr.Text = "localhost";
             // 
-            // textBox3
+            // TB_Port
             // 
-            this.textBox3.Location = new System.Drawing.Point(105, 278);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.Text = "5432";
+            this.TB_Port.Location = new System.Drawing.Point(105, 278);
+            this.TB_Port.Name = "TB_Port";
+            this.TB_Port.Size = new System.Drawing.Size(100, 20);
+            this.TB_Port.TabIndex = 3;
+            this.TB_Port.Text = "5432";
             // 
-            // textBox4
+            // TB_Datab
             // 
-            this.textBox4.Location = new System.Drawing.Point(105, 304);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 4;
-            this.textBox4.Text = "Fietsendiefstal";
+            this.TB_Datab.Location = new System.Drawing.Point(105, 304);
+            this.TB_Datab.Name = "TB_Datab";
+            this.TB_Datab.Size = new System.Drawing.Size(100, 20);
+            this.TB_Datab.TabIndex = 4;
+            this.TB_Datab.Text = "Fietsendiefstal";
             // 
             // textBox5
             // 
@@ -269,9 +269,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.TB_Datab);
+            this.Controls.Add(this.TB_Port);
+            this.Controls.Add(this.TB_IPaddr);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -296,9 +296,9 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox TB_IPaddr;
+        private System.Windows.Forms.TextBox TB_Port;
+        private System.Windows.Forms.TextBox TB_Datab;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label1;
