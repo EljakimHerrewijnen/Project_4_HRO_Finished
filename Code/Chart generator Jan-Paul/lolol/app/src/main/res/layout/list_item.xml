@@ -7,10 +7,10 @@
     <Switch
         android:id="@+id/expandedListItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="4dp"
         android:textSize="18dp"
         android:background="#dedede"
-        android:layout_weight="0.06" />
+        android:layout_weight="0.09" />
 
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,18 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
     ArrayList<String> itemList;
-    /*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        String[] items={"Pie","Line","Etc"};
-        itemList=new ArrayList<String>(Arrays.asList(items));
-        adapter=new ArrayAdapter<String>(this,R.layout.list_item,R.id.checkbox,itemList);
-        ListView listV=(ListView)findViewById(R.id.listView);
-        listV.setAdapter(adapter);
-    }*/
+    public boolean pie;
+    public boolean line;
 
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
@@ -85,7 +76,15 @@ public class MainActivity extends AppCompatActivity {
     //gets called when something is toggled in main activity
     public void onToggle(View v){
         //checks what is toggled, and gets its boollean value.
-        
+        Switch s = (Switch) v;
+        if (s.isChecked() == true){
+            //if(s.getId() == 2){
+
+            //}
+        }
+        else{
+
+        }
 
     }
 
