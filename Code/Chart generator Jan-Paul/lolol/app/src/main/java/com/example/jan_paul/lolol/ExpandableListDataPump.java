@@ -21,14 +21,13 @@ public class ExpandableListDataPump {
             Joost.add("Keyboard");
             Joost.add("Trombone");
 
-            List<String> JanPeter = new ArrayList<String>();
-            JanPeter.add("SSD");
-            JanPeter.add("Portfolio");
-            JanPeter.add("Laptophardeschijfcaddy");
+            List<String> ChartType = new ArrayList<String>();
+            ChartType.add("Line chart");
+            ChartType.add("Pie chart");
 
             expandableListDetail.put("TIMO", Timo);
             expandableListDetail.put("JOOST", Joost);
-            expandableListDetail.put("JANPETER", JanPeter);
+            expandableListDetail.put("Charttype", ChartType);
             return expandableListDetail;
 
     }

@@ -82,7 +82,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void onClick(View v){
+    //gets called when something is toggled in main activity
+    public void onToggle(View v){
+        //checks what is toggled, and gets its boollean value.
+
+
+    }
+
+
+    //opens chart activity
+    public void onGenerate(View v){
         startActivity(new Intent(MainActivity.this, ChartActivity.class));
     }
 
