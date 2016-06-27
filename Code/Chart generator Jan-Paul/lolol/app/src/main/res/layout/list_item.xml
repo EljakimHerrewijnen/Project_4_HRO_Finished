@@ -9,4 +9,14 @@
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:background="#dedede"/>
+
+
+    <TextView
+        android:id="@+id/expandedListItem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
 </LinearLayout>
