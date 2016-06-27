@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     //gets called when something is toggled in main activity
     public void onToggle(View v){
         //checks what is toggled, and gets its boollean value.
-
+        
 
     }
 
