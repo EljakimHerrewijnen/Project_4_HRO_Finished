@@ -1,6 +1,7 @@
 package com.example.jan_paul.lolol;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> itemList;
     public boolean pie;
     public boolean line;
+
 
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     //gets called when something is toggled in main activity
     public void onToggle(View v){
         //checks what is toggled, and gets its boollean value.
