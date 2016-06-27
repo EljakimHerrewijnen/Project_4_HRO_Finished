@@ -23,7 +23,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Chart extends AppCompatActivity {
+public class ChartActivity extends AppCompatActivity {
 
 
     @Override
