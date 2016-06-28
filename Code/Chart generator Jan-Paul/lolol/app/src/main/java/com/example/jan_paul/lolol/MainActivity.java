@@ -96,10 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     //opens chart activity
     public void onGenerate(View v){
         startActivity(new Intent(MainActivity.this, ChartActivity.class));
     }
-
 }
