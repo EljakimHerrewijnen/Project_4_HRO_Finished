@@ -10,6 +10,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.database.sqlite.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

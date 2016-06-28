@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textColor="@android:color/black"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp" />
 
 </LinearLayout>
