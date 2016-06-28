@@ -1,5 +1,6 @@
 package com.example.jan_paul.lolol;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.ExpandableListView;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.database.sqlite.*;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> itemList;
     public boolean pie;
     public boolean line;
-
+    public String FilePath = "/data";
+    public String FileName = "Fietsendiefstal";
 
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new com.example.jan_paul.lolol.CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
+
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
