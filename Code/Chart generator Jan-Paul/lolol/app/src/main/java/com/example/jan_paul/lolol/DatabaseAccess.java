@@ -22,6 +22,7 @@ public class DatabaseAccess {
 
     /**
      * Return a singleton instance of DatabaseAccess.
+     *
      * @param context the Context
      * @return the instance of DabaseAccess
      */
@@ -50,6 +51,7 @@ public class DatabaseAccess {
 
     /**
      * Read all deelgemeentes from the database.
+     *
      * @return a List of deelgemeentes
      */
     public List<String> getDeelgemeente1() {
@@ -75,3 +77,4 @@ public class DatabaseAccess {
         cursor.close();
         return list;
     }
+}
