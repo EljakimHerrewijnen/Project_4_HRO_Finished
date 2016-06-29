@@ -34,10 +34,7 @@
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
         android:scrollbars="vertical"
-        android:layout_above="@+id/button"
-        android:layout_below="@+id/buttonworldx"
-        android:layout_alignRight="@+id/tableLayout"
-        android:layout_alignEnd="@+id/tableLayout" />
+        android:layout_above="@+id/button"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -58,23 +55,6 @@
         android:text="hoi"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/expandableListView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/buttonworldx"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/buttonworldy"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/buttonworldx" />
 
 
 </RelativeLayout>

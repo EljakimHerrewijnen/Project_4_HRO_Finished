@@ -42,7 +42,7 @@ public class ChartActivity extends AppCompatActivity {
 
     }
 
-    void loadChart(String ChartType){
+    public void loadChart(String ChartType){
         if (ChartType == "pie") {
             LineChart chart = (LineChart) findViewById(R.id.chart);
 
