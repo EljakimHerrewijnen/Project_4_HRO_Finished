@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.jan_paul.lolol.R;
@@ -44,13 +45,12 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.list_item, null);
+
             convertView.setPadding(0, 25, 0, 25);
-            convertView.setBackgroundColor(200);
         }
-        TextView expandedListTextView = (TextView) convertView
+        Switch expandedListTextView = (Switch) convertView
                 .findViewById(R.id.expandedListItem);
         expandedListTextView.setText(expandedListText);
-
         return convertView;
     }
 

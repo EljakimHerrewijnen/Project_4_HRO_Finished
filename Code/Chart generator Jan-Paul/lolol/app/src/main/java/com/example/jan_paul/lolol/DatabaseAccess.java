@@ -67,18 +67,16 @@ public class DatabaseAccess {
     }
 
     public String getDeelgemeente2() {
-        String deelgemeente = " nope";
-        Cursor cursor = database.rawQuery("SELECT deelgemeente FROM fietstrommels WHERE inventarisnr = 'FT10'", null);
-                //query(fietstrommels, new String<>, )
-                //("SELECT deelgemeente FROM fietstrommels", null);
+        /*
+        Cursor cursor = database.rawQuery("SELECT deelgemeente FROM fietstrommels", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            deelgemeente = cursor.getString(0);
+            list.add(cursor.getString(0));
             cursor.moveToNext();
         }
         cursor.close();
-
-        //String niks = "niks";
-        return deelgemeente;
+        */
+        String niks = "niks";
+        return niks;
     }
 }

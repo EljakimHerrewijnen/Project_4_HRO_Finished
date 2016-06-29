@@ -4,16 +4,17 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:measureWithLargestChild="false"
-    android:nestedScrollingEnabled="false"
-    android:onClick="onToggle">
+    android:nestedScrollingEnabled="false">
 
     <Switch
         android:id="@+id/expandedListItem"
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:textSize="18dp"
-        android:background="@android:color/transparent"
-        android:layout_weight="0.19" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:onClick="onToggle"
+        android:textSize="15dp"/>
 
 
 </LinearLayout>
