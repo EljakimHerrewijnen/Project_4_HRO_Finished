@@ -53,17 +53,19 @@ public class MainActivity extends AppCompatActivity {
 
     //opens chart activity
     public void onGenerate(View v){
+        //loadChart(MainActivity.ChartType);
         startActivity(new Intent(MainActivity.this, ChartActivity.class));
     }
 
     public void onToggle(View v){
         Switch s = (Switch) v;
-        setFilter(s.getText().toString());
-
+        setFilter(s.getText().toString(), s.isChecked());
     }
 
-    public void setFilter(String s){
-        if (s == "Pie chart"){ChartType = "pie";}
-        if (s == "Line chart"){ChartType = "line";}
+    public void setFilter(String s, boolean b){
+        if (s == "Pie chart" && b){ChartType = "pie";}
+        if (s == "Pie chart" && !b){ChartType = "";}
+        if (s == "Line chart" && b){ChartType = "line";}
+        if (s == "Line chart" && !b){ChartType = "";}
     }
 }
