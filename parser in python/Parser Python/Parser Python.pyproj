@@ -37,6 +37,9 @@
     <Compile Include="parserVerkeerslocatie.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Parser_Fietsendiefstal.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="parser_fietstrommels.py">
       <SubType>Code</SubType>
     </Compile>

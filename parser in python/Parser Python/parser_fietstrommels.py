@@ -12,33 +12,12 @@ def fietstrommels_sheet(x2, cursor, db):
     k = 0
     
     for i in range(sheet0.nrows + 1):       #for each row        -sheet januari
-        for i in range(35):                 #for each column
+        for j in range(35):                 #for each column
             y += 1
             k += 1
-            """
-            invnr_value = sheet0.cell_value(0, y)
-            loc_value = loc_value.split()
-            loc_naam = loc_value[0]
-            print("loc_naam: " + loc_value[0] + " en " + loc_value[1])
 
-            datum_tijd_value = str(datetime.datetime(*xlrd.xldate_as_tuple(sheet0.cell_value(x, 0), book.datemode)))
-            datum_tijd_value = str(datum_tijd_value)
-            datum_tijd_value = datum_tijd_value.split()
-            datum = datum_tijd_value[0]      
-            tijd = datum_tijd_value[1]       
-            print("datum: " + datum + " tijd: " + tijd)
-            """
             value = sheet0.cell_value(x, y)      #take value from position x, y
-            """
-            if y > 0:       #weghalen?
-                k += 1
-            if y == 0:      #weghalen?
-                value = str(value)
-                value.split()
-                datum = value[0]
-                tijd = value[1]
-            else:
-            """
+
             if k == 1:
                 invnr = str(value)
                 print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
