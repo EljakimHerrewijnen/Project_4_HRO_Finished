@@ -30,7 +30,7 @@ public class ChartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
-        loadChart();
+        loadChart(MainActivity.ChartType);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
@@ -42,52 +42,45 @@ public class ChartActivity extends AppCompatActivity {
 
     }
 
-    void loadChart(){
-        LineChart chart = (LineChart) findViewById(R.id.chart);
+    void loadChart(String ChartType){
+        if (ChartType == "pie") {
+            LineChart chart = (LineChart) findViewById(R.id.chart);
 
-        ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
-        ArrayList<Entry> valsComp2 = new ArrayList<Entry>();
-        ArrayList<Entry> valsComp3 = new ArrayList<Entry>();
+            ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
+            ArrayList<Entry> valsComp2 = new ArrayList<Entry>();
 
-        valsComp1.add(new Entry(100.000f, 0));
-        valsComp1.add(new Entry(50.000f, 5));
+            valsComp1.add(new Entry(100.000f, 0));
+            valsComp1.add(new Entry(50.000f, 5));
 
-        valsComp2.add(new Entry(130.000f, 0));
-        valsComp2.add(new Entry(150.000f, 7));
+            valsComp2.add(new Entry(130.000f, 0));
+            valsComp2.add(new Entry(150.000f, 7));
 
-        valsComp3.add(new Entry(10, 2));
+            LineDataSet setComp1 = new LineDataSet(valsComp1, "A");
+            setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
+            LineDataSet setComp2 = new LineDataSet(valsComp2, "B");
+            setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        valsComp3.add(new Entry(1000.000f, 6));
+            ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+            dataSets.add(setComp1);
+            dataSets.add(setComp2);
 
-        LineDataSet setComp1 = new LineDataSet(valsComp1, "A");
-        setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(valsComp2, "B");
-        setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp3 = new LineDataSet(valsComp3, "C");
-        setComp3.setAxisDependency(YAxis.AxisDependency.LEFT);
+            float max = 7; //highest y value
+            float min = -5; //lowest x value
 
-        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(setComp1);
-        dataSets.add(setComp2);
-        dataSets.add(setComp3);
+            ArrayList<String> xVals = new ArrayList<String>();
 
-        float max = 7; //highest y value
-        float min = -5; //lowest x value
+            while (max >= min) {
+                xVals.add(Float.toString(min));
+                min = min + 1;
+            }
 
-        ArrayList<String> xVals = new ArrayList<String>();
+            LineData data = new LineData(xVals, dataSets);
+            //chart.animateX(3000); //animatie van 3 secs
+            chart.setData(data);
 
-        while (max >= min){
-            xVals.add(Float.toString(min));
-            min = min + 1;
+            chart.invalidate();
+
         }
-
-        LineData data = new LineData(xVals, dataSets);
-        //chart.animateX(3000); //animatie van 3 secs
-        chart.setData(data);
-
-        chart.invalidate();
-
-
 
     }
 
