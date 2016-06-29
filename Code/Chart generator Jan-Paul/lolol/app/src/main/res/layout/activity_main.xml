@@ -48,7 +48,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/editTextData"
         android:layout_toRightOf="@+id/btn_database"
         android:layout_alignRight="@+id/tableLayout"
         android:layout_alignEnd="@+id/tableLayout"

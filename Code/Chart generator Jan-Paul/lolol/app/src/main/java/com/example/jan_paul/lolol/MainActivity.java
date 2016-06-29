@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Switch;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public String FilePath = "/data";
     public String FileName = "Fietsendiefstal";
 
+    Button btnLoadData;
+    EditText editTxtData;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_main);
+
+        btnLoadData =(Button)findViewById(R.id.btn_database);
+        editTxtData = (EditText)findViewById(R.id.editTextData);
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListDataPump.getData();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
@@ -81,7 +88,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btnLoadData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vw) {
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance();
+                databaseAccess.open();
+                String deelgemeente = databaseAccess.getDeelgemeente2();
+                databaseAccess.close();
+                editTxtData.setText(editTxtData.getText() + deelgemeente);
+            }
+        });
     }
 
     //gets called when something is toggled in main activity
