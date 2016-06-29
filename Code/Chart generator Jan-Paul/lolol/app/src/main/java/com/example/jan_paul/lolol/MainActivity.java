@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     List<String> expandableListTitle;
     HashMap<String, List<String>> expandableListDetail;
 
+
+
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_main);
@@ -81,14 +83,16 @@ public class MainActivity extends AppCompatActivity {
     public void onToggle(View v){
         //checks what is toggled, and gets its boollean value.
         Switch s = (Switch) v;
-        if (s.isChecked() == true){
-            //if(s.getId() == 2){
+           if(s.getText() == "top kek"){
+               if (s.isChecked() == true){
 
-            //}
-        }
-        else{
+               }
+               else{
 
-        }
+               }
+
+           }
+
 
     }
 
