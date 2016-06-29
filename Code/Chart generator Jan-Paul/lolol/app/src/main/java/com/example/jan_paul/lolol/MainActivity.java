@@ -1,5 +1,6 @@
 package com.example.jan_paul.lolol;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,18 +17,17 @@ import android.widget.Toast;
 import android.database.sqlite.*;
 import android.content.Context;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    //hoi
     ArrayAdapter<String> adapter;
     ArrayList<String> itemList;
     public boolean pie;
     public boolean line;
-    public String FilePath = "/data";
-    public String FileName = "Fietsendiefstal";
+    Context content;
 
     Button btnLoadData;
     EditText editTxtData;
@@ -57,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
               //  Toast.makeText(getApplicationContext(),
                 //        expandableListTitle.get(groupPosition) + " List Expanded."
                  //       Toast.LENGTH_SHORT).show();
-                //Above is for displaying text
-
+                //Above is for displaying text.
             }
         });
 
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         btnLoadData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vw) {
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance();
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
                 databaseAccess.open();
                 String deelgemeente = databaseAccess.getDeelgemeente2();
                 databaseAccess.close();
