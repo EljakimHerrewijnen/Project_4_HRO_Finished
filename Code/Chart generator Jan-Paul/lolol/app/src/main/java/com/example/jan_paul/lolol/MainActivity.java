@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btnLoadData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vw) {
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(content);
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
                 databaseAccess.open();
                 String deelgemeente = databaseAccess.getDeelgemeente2();
                 databaseAccess.close();
