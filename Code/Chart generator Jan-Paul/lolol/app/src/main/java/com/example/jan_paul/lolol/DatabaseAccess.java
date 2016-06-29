@@ -66,8 +66,8 @@ public class DatabaseAccess {
         return list;
     }
 
-    public List<String> getDeelgemeente2() {
-        List<String> list = new ArrayList<>();
+    public String getDeelgemeente2() {
+        /*
         Cursor cursor = database.rawQuery("SELECT deelgemeente FROM fietstrommels", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -75,6 +75,8 @@ public class DatabaseAccess {
             cursor.moveToNext();
         }
         cursor.close();
-        return list;
+        */
+        String niks = "niks";
+        return niks;
     }
 }
