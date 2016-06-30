@@ -87,10 +87,6 @@ public class DatabaseAccess {
     }
 
     public List<Data> getMostfietstrommels() {
-        //HashMap<String, Integer> data = new HashMap<String, Integer>();
-        //HashMap<>
-        //List<String> most_deelgemeente = new ArrayList<>();
-        //List<int> aantal_fietstrommels = new ArrayList<>();
         List<Data> mostfietstrommels_list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT deelgemeente, COUNT(*) AS 'aantal' FROM fietstrommels GROUP BY deelgemeente ORDER BY aantal DESC limit 5", null);
         cursor.moveToFirst();
@@ -105,4 +101,18 @@ public class DatabaseAccess {
         return mostfietstrommels_list;
     }
 
+    public List<Data> getBicycleTheftPerMonth() {
+        List<Data> bicycleTheft_list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Kennisname, COUNT(*) AS 'aantal' FROM fietsendiefstal GROUP BY Kennisname HAVING aantal = '%-1' OR '___1%' ", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String months = cursor.getString(0);
+            int aantal_gestolen_fietsen = Integer.parseInt(cursor.getString(1));
+            bicycleTheft_list.add(new Data(months, aantal_gestolen_fietsen));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return bicycleTheft_list;
+    }
 }
