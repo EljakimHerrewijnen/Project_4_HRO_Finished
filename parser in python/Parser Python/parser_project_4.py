@@ -1,12 +1,13 @@
 import sqlite3      #SQLite3 module
 import sys     
 from parser_fietstrommels import *
+from Parser_Fietsendiefstal import *
 
 try:
     #Create a database in RAM
     db = sqlite3.connect(':memory:')
     #Creates or opens a file called mydb with a SQLite3 DB
-    db = sqlite3.connect('D:/1 Project/Project 4 App/parser in python/mydb')
+    db = sqlite3.connect('C:/Users/Eljakim Herrewijnen/Documents/GitHub/Project_4/parser in python/mydb')
 
     
     # Get a cursor object
@@ -24,7 +25,7 @@ try:
     cursor.execute('''Drop table Fietsendiefstal''')
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Fietsendiefstal(Voorvalnummer TEXT, Kennisname TEXT, MK TEXT, MKomschrijving TEXT, Poging TEXT, District TEXT, Werkgebied TEXT, Plaats TEXT, Buurt TEXT, Straat TEXT, Begindagsoort TEXT, Begindatum TEXT, Begintijd TEXT,
-        Einddagsoort TEXT, Einddatum TEXT, Eindtijd TEXT, Gemiddeldejaar TEXT, Gemiddeldemaand TEXT, Gemiddeldedagsoort TEXT, Gemiddeldedagdeel_6_uren TEXT, 
+        Einddagsoort TEXT, Einddatum TEXT, Eindtijd TEXT, Gemiddeldejaar TEXT, Gemiddeldemaand TEXT, Gemiddeldedagsoort TEXT, Gemiddeldedagdeel6uren TEXT, 
         Trefwoord, Object, Merk, Type, Kleur)''')
     db.commit()
 
