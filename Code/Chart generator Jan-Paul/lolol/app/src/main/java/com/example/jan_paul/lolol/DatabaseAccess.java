@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -67,42 +66,17 @@ public class DatabaseAccess {
         return list;
     }
 
-    public String getMostDeelgemeente2() {
-        String most_deelgemeente = " ";
-        String aantal_deelgemeente = " ";
-        Cursor cursor = database.rawQuery("SELECT deelgemeente, COUNT(*) AS 'aantal' FROM fietstrommels GROUP BY deelgemeente ORDER BY aantal DESC limit 5", null);
-        //query(fietstrommels, new String<>, )
-        //("SELECT deelgemeente FROM fietstrommels", null);
+    public String getDeelgemeente2() {
+        /*
+        Cursor cursor = database.rawQuery("SELECT deelgemeente FROM fietstrommels", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            most_deelgemeente = cursor.getString(0);
-            aantal_deelgemeente = cursor.getString(1);
+            list.add(cursor.getString(0));
             cursor.moveToNext();
         }
         cursor.close();
-
-        String returning_string = most_deelgemeente + " " + aantal_deelgemeente;
-
-        return returning_string;
+        */
+        String niks = "niks";
+        return niks;
     }
-
-    public List<Data> getMostfietstrommels() {
-        //HashMap<String, Integer> data = new HashMap<String, Integer>();
-        //HashMap<>
-        //List<String> most_deelgemeente = new ArrayList<>();
-        //List<int> aantal_fietstrommels = new ArrayList<>();
-        List<Data> mostfietstrommels_list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT deelgemeente, COUNT(*) AS 'aantal' FROM fietstrommels GROUP BY deelgemeente ORDER BY aantal DESC limit 5", null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            String most_deelgemeente = cursor.getString(0);
-            int aantal_fietstrommels = Integer.parseInt(cursor.getString(1));
-            mostfietstrommels_list.add(new Data(most_deelgemeente, aantal_fietstrommels));
-            cursor.moveToNext();
-        }
-        cursor.close();
-
-        return mostfietstrommels_list;
-    }
-
 }

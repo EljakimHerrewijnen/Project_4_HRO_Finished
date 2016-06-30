@@ -1,18 +1,13 @@
 package com.example.jan_paul.lolol;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Switch;
-import android.widget.Toast;
-import android.database.sqlite.*;
-import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
     //opens chart activity
     public void onGenerate(View v){
-        //loadChart(MainActivity.ChartType);
-        startActivity(new Intent(MainActivity.this, ChartActivity.class));
+        /*
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content, ChartFragment.newInstance(), "rageComicList")
+                .commit();
+                */
+        Intent intent = new Intent(this, ChartActivity.class);
+        startActivity(intent);
     }
 
     public void onToggle(View v){
@@ -60,4 +61,8 @@ public class MainActivity extends AppCompatActivity {
         if (s == "Line chart" && b){ChartType = "line";}
         if (s == "Line chart" && !b){ChartType = "";}
     }
+
+
+
+
 }
