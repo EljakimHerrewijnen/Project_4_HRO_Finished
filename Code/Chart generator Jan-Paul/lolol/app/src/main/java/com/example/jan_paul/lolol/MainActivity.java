@@ -1,12 +1,18 @@
 package com.example.jan_paul.lolol;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Switch;
+import android.widget.Toast;
+import android.database.sqlite.*;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,10 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     //opens chart activity
     public void onGenerate(View v){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(android.R.id.content, ChartFragment.newInstance(), "rageComicList")
-                .commit();
+        //loadChart(MainActivity.ChartType);
+        startActivity(new Intent(MainActivity.this, ChartActivity.class));
     }
 
     public void onToggle(View v){
