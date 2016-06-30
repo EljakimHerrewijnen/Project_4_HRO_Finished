@@ -20,25 +20,18 @@ def fietstrommels_sheet(x2, cursor, db):
 
             if k == 1:
                 invnr = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 10:
                 straat = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 11:
                 thv = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 19:
                 xc = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 20:
                 yc = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 29:
                 deelgem = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 33:
                 mutatiedatum = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 34:
                 user = str(value)
                 print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))

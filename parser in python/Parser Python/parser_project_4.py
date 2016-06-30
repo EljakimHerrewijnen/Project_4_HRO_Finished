@@ -7,7 +7,7 @@ try:
     #Create a database in RAM
     db = sqlite3.connect(':memory:')
     #Creates or opens a file called mydb with a SQLite3 DB
-    db = sqlite3.connect('C:/Users/Eljakim Herrewijnen/Documents/GitHub/Project_4/parser in python/mydb')
+    db = sqlite3.connect('F:/Github/Project_4/parser in python/mydb')
 
     
     # Get a cursor object

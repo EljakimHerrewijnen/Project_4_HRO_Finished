@@ -12,7 +12,7 @@ def FietsDiefstal_sheet(x2, cursor, db):
     k = 0
     
     for i in range(19758):       #for each row        -sheet januari
-        for i in range(25):                 #for each column
+        for j in range(25):                 #for each column
             y += 1
             k += 1
 
@@ -20,30 +20,22 @@ def FietsDiefstal_sheet(x2, cursor, db):
 
             if k == 1:
                 Voorvalnummer = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 2:
                 Kennisname = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 3:
                 MK = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 4:
                 MKomschrijving = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 5:
                 Poging = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 6:
                 District = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 7:
                 Werkgebied = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 8:
                 Plaats = str(value)
             elif k == 9:
                 Buurt = str(value)
-                print("value = " + str(value) + " en coordinaten: x = " + str(x) + " y = " + str(y))
             elif k == 10:
                 Straat = str(value)
             elif k == 11:
@@ -74,10 +66,9 @@ def FietsDiefstal_sheet(x2, cursor, db):
                 Merk = str(value)
             elif k == 24:
                 Type = str(value)
-                print("24");
             elif k == 25:
                 Kleur = str(value)
-                print("25")
+                print(i)
         #insert values in table locatie    
         cursor.execute('''INSERT INTO Fietsendiefstal(Voorvalnummer, Kennisname, MK, 
         MKomschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begindagsoort, 
