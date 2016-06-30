@@ -1,25 +1,20 @@
 package com.example.jan_paul.lolol;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.database.sqlite.*;
-import android.content.Context;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -31,16 +26,16 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener  {
-    ArrayAdapter<String> adapter;
-    ArrayList<String> itemList;
-    public boolean pie;
-    public boolean line;
-    Context content;
+
     public GoogleApiClient mGoogleApiClient = null;
     public Location mLastLocation = null;
 
     Button btnLoadData, mLatitudeText, mLongitudeText;
     EditText editTxtData;
+
+    //filters
+    public static String ChartType = "";
+
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
@@ -60,29 +55,6 @@ public class MainActivity extends AppCompatActivity implements
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new com.example.jan_paul.lolol.CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
-
-        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
-            @Override
-            public void onGroupExpand(int groupPosition) {
-              //  Toast.makeText(getApplicationContext(),
-                //        expandableListTitle.get(groupPosition) + " List Expanded."
-                 //       Toast.LENGTH_SHORT).show();
-                //Above is for displaying text.
-            }
-        });
-
-        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                //Toast.makeText(getApplicationContext(),
-                  //      expandableListTitle.get(groupPosition) + " List Collapsed."
-                    //    Toast.LENGTH_SHORT).show();
-                //Above is for displaying text
-
-            }
-        });
 
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -130,27 +102,30 @@ public class MainActivity extends AppCompatActivity implements
         super.onStop();
     }
 
-
-
-    //gets called when something is toggled in main activity
     public void onToggle(View v){
-        //checks what is toggled, and gets its boollean value.
         Switch s = (Switch) v;
-        if (s.isChecked() == true){
-            //if(s.getId() == 2){
-
-            //}
-        }
-        else{
-
-        }
-
+        //passes the switch name and its state to the filter setup
+        setFilter(s.getText().toString(), s.isChecked());
     }
 
+    //
+    public void setFilter(String s, boolean b){
+        if (s == "Pie chart" && b){ChartType = "pie";}
+        if (s == "Pie chart" && !b){ChartType = "";}
+        if (s == "Line chart" && b){ChartType = "line";}
+        if (s == "Line chart" && !b){ChartType = "";}
+    }
 
     //opens chart activity
     public void onGenerate(View v){
-        startActivity(new Intent(MainActivity.this, ChartActivity.class));
+        /*
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content, ChartFragment.newInstance(), "rageComicList")
+                .commit();
+                */
+        Intent intent = new Intent(this, ChartActivity.class);
+        startActivity(intent);
     }
 
     @Override

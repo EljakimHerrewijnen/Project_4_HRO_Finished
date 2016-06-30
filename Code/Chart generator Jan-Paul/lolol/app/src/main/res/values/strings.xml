@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">lolol</string>
-    <string name="service_not_available" />
-    <string name="invalid_lat_long_used" />
 </resources>

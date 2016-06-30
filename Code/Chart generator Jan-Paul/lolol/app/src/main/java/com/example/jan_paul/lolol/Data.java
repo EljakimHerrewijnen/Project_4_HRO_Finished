@@ -12,8 +12,8 @@ public class Data {
         this.value = value;
     }
 
-    public int getNaam(){
-        return value;
+    public String getNaam(){
+        return naam;
     }
 
     public void setNaam(String data_naam){
