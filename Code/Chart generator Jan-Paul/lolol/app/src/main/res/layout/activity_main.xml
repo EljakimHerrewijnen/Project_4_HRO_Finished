@@ -34,7 +34,7 @@
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
         android:scrollbars="vertical"
-        android:layout_above="@+id/button"/>
+        android:layout_above="@+id/button" />
 
     <Button
         android:layout_width="wrap_content"
@@ -50,11 +50,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextData"
         android:layout_toRightOf="@+id/btn_database"
-        android:layout_alignRight="@+id/tableLayout"
-        android:layout_alignEnd="@+id/tableLayout"
         android:text="hoi"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/expandableListView" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/editTextData"
+        android:layout_toEndOf="@+id/editTextData" />
 
 
 </RelativeLayout>
