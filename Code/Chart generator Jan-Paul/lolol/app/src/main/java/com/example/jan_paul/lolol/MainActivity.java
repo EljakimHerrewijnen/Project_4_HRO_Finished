@@ -21,7 +21,6 @@ import android.widget.Toast;
 import android.database.sqlite.*;
 import android.content.Context;
 
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
