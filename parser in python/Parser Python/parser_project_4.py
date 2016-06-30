@@ -21,10 +21,11 @@ try:
     #    CREATE TABLE fietstrommels(inventarisnr TEXT PRIMARY KEY, straat TEXT, thv TEXT, x_coordinaat TEXT, 
     #                       y_coordinaat TEXT, deelgemeente TEXT, mutatiedatum TEXT, door_user TEXT)''')
     ##''')
+    cursor.execute('''Drop table Fietsendiefstal''')
     cursor.execute('''
-        CREATE TABLE Fietsendiefstal(Voorval nummer TEXT, Kennisname TEXT, MK TEXT, MK omschrijving TEXT, Poging TEXT, District TEXT, Werkgebied TEXT, Plaats TEXT, Buurt TEXT, Straat TEXT, Begin dagsoort TEXT, Begindatum TEXT, Begintijd TEXT,
-        Eind dagsoort TEXT, Einddatum TEXT, Eindtijd TEXT, Gemiddelde jaar TEXT, Gemiddelde maand TEXT, Gemiddelde dagsoort TEXT, Gemiddelde dagdeel (6 uren) TEXT, 
-        Trefwoord, object, merk, type, kleur)''')
+        CREATE TABLE IF NOT EXISTS Fietsendiefstal(Voorvalnummer TEXT, Kennisname TEXT, MK TEXT, MKomschrijving TEXT, Poging TEXT, District TEXT, Werkgebied TEXT, Plaats TEXT, Buurt TEXT, Straat TEXT, Begindagsoort TEXT, Begindatum TEXT, Begintijd TEXT,
+        Einddagsoort TEXT, Einddatum TEXT, Eindtijd TEXT, Gemiddeldejaar TEXT, Gemiddeldemaand TEXT, Gemiddeldedagsoort TEXT, Gemiddeldedagdeel_6_uren TEXT, 
+        Trefwoord, Object, Merk, Type, Kleur)''')
     db.commit()
 
     #fietstrommels_sheet(11, cursor, db)
