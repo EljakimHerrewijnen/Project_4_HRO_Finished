@@ -85,7 +85,7 @@ namespace Parser_Project_4
                 + (char)34 + "type" + (char)34 + " varchar(256)," 
                 + (char)34 + "kleur" + (char)34 +" varchar(256));";
 
-            for(int i = 1; i < sheet.Rows.Count; i++)
+            for(int i = 1; i < 19759; i++)
             {
                 if (i != 1) { query += "\n INSERT INTO fietsendiefstal(" + tables + ")  VALUES ("; }
                 for(int j = 1; j <= 25; j++)
@@ -94,6 +94,7 @@ namespace Parser_Project_4
                     if (i == 1) { break; }
                     if(j == 13) { query += "\n"; }
                     query += (char)39;
+                    Cellvalues.Replace("'", "");
                     query += Cellvalues;
                     query += (char)39 + " ,";  
                     if(j == 25) { query = query.Remove(query.Length - 1); query += "); \n"; }
