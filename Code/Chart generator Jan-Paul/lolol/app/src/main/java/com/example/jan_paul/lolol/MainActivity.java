@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements
     public Location mLastLocation = null;
 
     Button btnLoadData, mLatitudeText, mLongitudeText;
+    Button btnSaveCalendar;
     EditText editTxtData;
 
     //filters
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         btnLoadData =(Button)findViewById(R.id.btn_database);
+        //btnSaveCalendar = (Button)findViewById(R.id.buttonworldy);
         editTxtData = (EditText)findViewById(R.id.editTextData);
         mLatitudeText = (Button) findViewById(R.id.buttonworldy);
         mLongitudeText = (Button) findViewById(R.id.buttonworldx);
@@ -65,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements
                 editTxtData.setText("dit moet weg");
             }
         });
+     //   btnSaveCalendar.setOnClickListener(new View.OnClickListener(){
+        //    @Override
+          //  public void onClick(View vw){
+       //         Location_ToCalendar location_toCalendar = Location_ToCalendar.setLocation();
+          //  }
+       // });
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
