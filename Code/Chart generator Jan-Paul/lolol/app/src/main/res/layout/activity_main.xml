@@ -14,77 +14,7 @@
         android:layout_height="match_parent"
         android:stretchColumns="1"
         android:id="@+id/tableLayout">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:text="New Button"
-                android:id="@+id/buttonworldy"
-                android:layout_column="15" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:text="New Button"
-                android:id="@+id/buttonworldx"
-                android:layout_column="15" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:text="New Button"
-                android:id="@+id/button2"
-                android:layout_column="15" />
-        </TableRow>
-    </TableLayout>
+        </TableLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,8 +34,7 @@
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
         android:scrollbars="vertical"
-        android:layout_above="@+id/button"
-        android:layout_toStartOf="@+id/editTextData" />
+        android:layout_above="@+id/button" />
 
     <Button
         android:layout_width="wrap_content"
@@ -121,11 +50,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextData"
         android:layout_toRightOf="@+id/btn_database"
-        android:layout_alignRight="@+id/tableLayout"
-        android:layout_alignEnd="@+id/tableLayout"
         android:text="hoi"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/expandableListView" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/editTextData"
+        android:layout_toEndOf="@+id/editTextData" />
 
 
 </RelativeLayout>
