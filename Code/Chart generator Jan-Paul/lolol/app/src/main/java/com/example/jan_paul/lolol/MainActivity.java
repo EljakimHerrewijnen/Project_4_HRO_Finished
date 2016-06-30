@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View vw) {
                 DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
                 databaseAccess.open();
-                String deelgemeente = databaseAccess.getDeelgemeente2();
+                List<Data> deelgemeente = databaseAccess.getMostfietstrommels();
                 databaseAccess.close();
-                editTxtData.setText(editTxtData.getText() + deelgemeente);
+                editTxtData.setText("dit moet weg");
             }
         });
     }
