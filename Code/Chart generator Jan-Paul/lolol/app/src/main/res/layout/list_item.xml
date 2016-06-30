@@ -2,15 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:measureWithLargestChild="false"
+    android:nestedScrollingEnabled="false">
 
     <Switch
         android:id="@+id/expandedListItem"
-        android:layout_width="match_parent"
-        android:layout_height="18dp"
-        android:textSize="18dp"
-        android:background="#dedede"
-        android:layout_weight="0.14" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:onClick="onToggle"
+        android:textSize="15dp"/>
 
 
 </LinearLayout>
