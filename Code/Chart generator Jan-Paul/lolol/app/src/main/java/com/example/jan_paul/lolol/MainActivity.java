@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements
     List<String> expandableListTitle;
     HashMap<String, List<String>> expandableListDetail;
 
+    public DatabaseAccess databaseAccess;
+
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_main);
@@ -55,16 +57,18 @@ public class MainActivity extends AppCompatActivity implements
         expandableListAdapter = new com.example.jan_paul.lolol.CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
+        /*
         btnLoadData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vw) {
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
+                databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
                 databaseAccess.open();
                 List<Data> deelgemeente = databaseAccess.getMostfietstrommels();
                 databaseAccess.close();
                 editTxtData.setText("dit moet weg");
             }
         });
+        */
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -101,26 +105,13 @@ public class MainActivity extends AppCompatActivity implements
 
     //opens chart activity
     public void onGenerate(View v){
-        /*
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(android.R.id.content, ChartFragment.newInstance(), "rageComicList")
-                .commit();
-                */
-        Intent intent = new Intent(this, ChartActivity.class);
+        Intent intent = new Intent(this, BarActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void onConnected(Bundle connectionHint) {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
@@ -134,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements
     public void onConnectionSuspended(int i) {
 
     }
-
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

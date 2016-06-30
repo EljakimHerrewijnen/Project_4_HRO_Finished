@@ -13,23 +13,16 @@ public class ExpandableListDataPump {
             //HashMap<String, List<Integer>> data = new HashMap<String, List<Integer>>();
             HashMap<Integer, String> data = new HashMap<Integer, String>();
 
-
-            List<String> Timo = new ArrayList<String>();
-            Timo.add("XBOX");
-            Timo.add("BF_One");
-            Timo.add("The_Witcher");
-
-            List<String> Joost = new ArrayList<String>();
-            Joost.add("Trompet");
-            Joost.add("Keyboard");
-            Joost.add("Trombone");
+            List<String> UserStorys = new ArrayList<String>();
+            UserStorys.add("5 fietstrommels");
+            UserStorys.add("x");
+            UserStorys.add("y");
 
             List<String> ChartType = new ArrayList<String>();
             ChartType.add("Line chart");
             ChartType.add("Pie chart");
 
-            expandableListDetail.put("TIMO", Timo);
-            expandableListDetail.put("JOOST", Joost);
+            expandableListDetail.put("UserStory", UserStorys);
             expandableListDetail.put("Charttype", ChartType);
             return expandableListDetail;
 

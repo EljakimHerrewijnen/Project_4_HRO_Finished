@@ -6,16 +6,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by Joostdw1 on 28-6-2016.
  */
 public class DatabaseAccess {
-    private SQLiteOpenHelper openHelper;
-    private SQLiteDatabase database;
-    private static DatabaseAccess instance;
+    public SQLiteOpenHelper openHelper;
+    public SQLiteDatabase database;
+    public static DatabaseAccess instance;
 
     private DatabaseAccess(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);

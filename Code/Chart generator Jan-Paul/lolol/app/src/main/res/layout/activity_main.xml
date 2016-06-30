@@ -24,9 +24,10 @@
             android:layout_height="match_parent">
 
             <Button
-                android:text="New Button"
+                android:text="x"
                 android:id="@+id/buttonworldx"
-                android:layout_column="17" />
+                android:layout_column="2"
+                android:layout_span="16" />
         </TableRow>
 
         <TableRow
@@ -38,9 +39,15 @@
             android:layout_height="match_parent">
 
             <Button
-                android:text="New Button"
+                android:text="y"
                 android:id="@+id/buttonworldy"
                 android:layout_column="17" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         </TableRow>
     </TableLayout>
     <Button
