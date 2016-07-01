@@ -1,6 +1,7 @@
 package com.example.jan_paul.lolol;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements
     public Location mLastLocation = null;
 
     Button btnLoadData, mLatitudeText, mLongitudeText;
-    EditText editTxtData;
 
     //filters
     public static String ChartType = "";
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         btnLoadData =(Button)findViewById(R.id.btn_database);
-        editTxtData = (EditText)findViewById(R.id.editTextData);
         mLatitudeText = (Button) findViewById(R.id.buttonworldy);
         mLongitudeText = (Button) findViewById(R.id.buttonworldx);
 
@@ -56,19 +55,6 @@ public class MainActivity extends AppCompatActivity implements
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new com.example.jan_paul.lolol.CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
-
-        /*
-        btnLoadData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View vw) {
-                databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
-                databaseAccess.open();
-                List<Data> deelgemeente = databaseAccess.getMostfietstrommels();
-                databaseAccess.close();
-                editTxtData.setText("dit moet weg");
-            }
-        });
-        */
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)

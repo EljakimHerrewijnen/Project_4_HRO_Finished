@@ -42,7 +42,7 @@ public class BarActivity extends AppCompatActivity {
         databaseAccess.open();
         List<Data> deelgemeente = databaseAccess.getMostfietstrommels();
         databaseAccess.close();
-
+        
         BarChart chart = (BarChart) findViewById(R.id.barchart);
         chart.animateX(3000); //animatie van 3 secs
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();

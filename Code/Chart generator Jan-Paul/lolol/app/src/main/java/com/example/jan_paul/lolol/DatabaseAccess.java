@@ -102,7 +102,7 @@ public class DatabaseAccess {
 
     public List<Data> getMostStolenBrands() {
         List<Data> MostStolenBrands_list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Merk, COUNT(*) AS 'aantal' FROM fietsendiefstal GROUP BY Merk ORDER BY aantal DESC", null);
+        Cursor cursor = database.rawQuery("SELECT Merk, COUNT(*) AS 'aantal' FROM Fietsendiefstal GROUP BY Merk ORDER BY aantal DESC", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String most_brands = cursor.getString(0);
@@ -111,13 +111,12 @@ public class DatabaseAccess {
             cursor.moveToNext();
         }
         cursor.close();
-
         return MostStolenBrands_list;
     }
 
     public List<Data> getMostStolenColors() {
         List<Data> MostStolenColors_list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Kleur, COUNT(*) AS 'aantal' FROM fietsendiefstal GROUP BY Kleur ORDER BY aantal DESC", null);
+        Cursor cursor = database.rawQuery("SELECT Kleur, COUNT(*) AS 'aantal' FROM Fietsendiefstal GROUP BY Kleur ORDER BY aantal DESC", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String most_colors = cursor.getString(0);
