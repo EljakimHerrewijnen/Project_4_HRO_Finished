@@ -23,9 +23,10 @@ public class BarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bar_chart);
-        loadChart();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
+        loadChart();
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -37,36 +38,30 @@ public class BarActivity extends AppCompatActivity {
 
     //(String ChartType)
     public void loadChart(){
-        //if (ChartType == "pie") {
-
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
         List<Data> deelgemeente = databaseAccess.getMostfietstrommels();
         databaseAccess.close();
 
-
         BarChart chart = (BarChart) findViewById(R.id.barchart);
-        int counter = 0;
+        chart.animateX(3000); //animatie van 3 secs
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         ArrayList<String> xVals = new ArrayList<String>();
 
         for(Iterator<Data> i = deelgemeente.iterator(); i.hasNext(); ) {
             Data d = i.next();
             ArrayList<BarEntry> a = new ArrayList<BarEntry>();
-            a.add(new BarEntry(d.value, counter));
-            counter = counter + 1;
+            a.add(new BarEntry(d.value, 0));
             BarDataSet s = new BarDataSet(a, d.naam);
+            //s.setBarSpacePercent(20f);
             s.setAxisDependency(YAxis.AxisDependency.LEFT);
             dataSets.add(s);
-            xVals.add(d.naam);
-
-
         }
+        xVals.add("");
 
         BarData data = new BarData(xVals, dataSets);
-        //chart.animateX(3000); //animatie van 3 secs
         chart.setData(data);
-
+        chart.setDescription("total fietscontainers");
         chart.invalidate();
 
 
