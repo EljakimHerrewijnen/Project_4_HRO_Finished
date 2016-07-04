@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -36,7 +37,6 @@ public class BarActivity extends AppCompatActivity {
 
     }
 
-    //(String ChartType)
     public void loadChart(){
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
@@ -47,7 +47,7 @@ public class BarActivity extends AppCompatActivity {
         chart.animateX(3000); //animatie van 3 secs
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         ArrayList<String> xVals = new ArrayList<String>();
-
+        int counter = 0;
         for(Iterator<Data> i = deelgemeente.iterator(); i.hasNext(); ) {
             Data d = i.next();
             ArrayList<BarEntry> a = new ArrayList<BarEntry>();
@@ -55,13 +55,20 @@ public class BarActivity extends AppCompatActivity {
             BarDataSet s = new BarDataSet(a, d.naam);
             //s.setBarSpacePercent(20f);
             s.setAxisDependency(YAxis.AxisDependency.LEFT);
+            ArrayList<Integer> colors = new ArrayList<Integer>();
+            for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                colors.add(c);
+            s.setColor(colors.get(counter));
+            counter = counter + 1;
+
             dataSets.add(s);
+
         }
         xVals.add("");
 
         BarData data = new BarData(xVals, dataSets);
         chart.setData(data);
-        chart.setDescription("total fietscontainers");
+        chart.setDescription("");
         chart.invalidate();
 
 
