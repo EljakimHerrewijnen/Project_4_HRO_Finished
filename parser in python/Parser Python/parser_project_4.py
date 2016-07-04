@@ -1,13 +1,15 @@
 import sqlite3      #SQLite3 module
+import psycopg2
 import sys     
 from parser_fietstrommels import *
 from Parser_Fietsendiefstal import *
 
 try:
     #Create a database in RAM
-    db = sqlite3.connect(':memory:')
+    db = psycopg2.connect(database='Project_4_Database', user='postgres', password='password')
     #Creates or opens a file called mydb with a SQLite3 DB
-    db = sqlite3.connect('F:/Github/Project_4/parser in python/mydb')
+
+   # db = sqlite3.connect('F:/Github/Project_4/parser in python/mydb')
 
     
     # Get a cursor object
@@ -22,11 +24,11 @@ try:
     #    CREATE TABLE fietstrommels(inventarisnr TEXT PRIMARY KEY, straat TEXT, thv TEXT, x_coordinaat TEXT, 
     #                       y_coordinaat TEXT, deelgemeente TEXT, mutatiedatum TEXT, door_user TEXT)''')
     ##''')
-    cursor.execute('''Drop table Fietsendiefstal''')
+    #cursor.execute('''Drop table Fietsendiefstal''')
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Fietsendiefstal(Voorvalnummer TEXT, Kennisname TEXT, MK TEXT, MKomschrijving TEXT, Poging TEXT, District TEXT, Werkgebied TEXT, Plaats TEXT, Buurt TEXT, Straat TEXT, Begindagsoort TEXT, Begindatum TEXT, Begintijd TEXT,
-        Einddagsoort TEXT, Einddatum TEXT, Eindtijd TEXT, Gemiddeldejaar TEXT, Gemiddeldemaand TEXT, Gemiddeldedagsoort TEXT, Gemiddeldedagdeel6uren TEXT, 
-        Trefwoord, Object, Merk, Type, Kleur)''')
+        CREATE TABLE IF NOT EXISTS Fietsendiefstal(Voorvalnummer varchar, Kennisname varchar, MK varchar, MKomschrijving varchar, Poging varchar, District varchar, Werkgebied varchar, Plaats varchar, Buurt varchar, Straat varchar, Begindagsoort varchar, Begindatum varchar, Begintijd varchar,
+        Einddagsoort varchar, Einddatum varchar, Eindtijd varchar, Gemiddeldejaar varchar, Gemiddeldemaand varchar, Gemiddeldedagsoort varchar, Gemiddeldedagdeel6uren varchar, 
+        Trefwoord varchar, Object varchar, Merk varchar, Type varchar, Kleur varchar)''')
     db.commit()
 
     #fietstrommels_sheet(11, cursor, db)
