@@ -1,38 +1,35 @@
 import sqlite3      #SQLite3 module
-import psycopg2
+#import psycopg2
 import sys     
 from parser_fietstrommels import *
 from Parser_Fietsendiefstal import *
 
 try:
     #Create a database in RAM
-    db = psycopg2.connect(database='Project_4_Database', user='postgres', password='password')
+    db = sqlite3.connect(':memory:')
     #Creates or opens a file called mydb with a SQLite3 DB
-
-   # db = sqlite3.connect('F:/Github/Project_4/parser in python/mydb')
-
+    db = sqlite3.connect('C:/Users/Joostdw1/Documents/Github/Project_4/parser in python/mydb')
     
     # Get a cursor object
     cursor = db.cursor()
-    #cursor.execute('''DROP TABLE fietstrommels''')
+    cursor.execute('''DROP TABLE fietstrommels''')
     db.commit()
-    
 
     # Get a cursor object
     cursor = db.cursor()
-    #cursor.execute('''
-    #    CREATE TABLE fietstrommels(inventarisnr TEXT PRIMARY KEY, straat TEXT, thv TEXT, x_coordinaat TEXT, 
-    #                       y_coordinaat TEXT, deelgemeente TEXT, mutatiedatum TEXT, door_user TEXT)''')
-    ##''')
-    #cursor.execute('''Drop table Fietsendiefstal''')
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Fietsendiefstal(Voorvalnummer varchar, Kennisname varchar, MK varchar, MKomschrijving varchar, Poging varchar, District varchar, Werkgebied varchar, Plaats varchar, Buurt varchar, Straat varchar, Begindagsoort varchar, Begindatum varchar, Begintijd varchar,
-        Einddagsoort varchar, Einddatum varchar, Eindtijd varchar, Gemiddeldejaar varchar, Gemiddeldemaand varchar, Gemiddeldedagsoort varchar, Gemiddeldedagdeel6uren varchar, 
-        Trefwoord varchar, Object varchar, Merk varchar, Type varchar, Kleur varchar)''')
-    db.commit()
+        CREATE TABLE fietstrommels(inventarisnr TEXT PRIMARY KEY, straat TEXT, thv TEXT, x_coordinaat TEXT, 
+                           y_coordinaat TEXT, deelgemeente TEXT, mutatiedatum TEXT, door_user TEXT)''')
+    #''')
+    #cursor.execute('''Drop table Fietsendiefstal''')
+    #cursor.execute('''
+    #    CREATE TABLE IF NOT EXISTS Fietsendiefstal(Voorvalnummer varchar, Kennisname varchar, MK varchar, MKomschrijving varchar, Poging varchar, District varchar, Werkgebied varchar, Plaats varchar, Buurt varchar, Straat varchar, Begindagsoort varchar, Begindatum varchar, Begintijd varchar,
+    #    Einddagsoort varchar, Einddatum varchar, Eindtijd varchar, Gemiddeldejaar varchar, Gemiddeldemaand varchar, Gemiddeldedagsoort varchar, Gemiddeldedagdeel6uren varchar, 
+    #    Trefwoord varchar, Object varchar, Merk varchar, Type varchar, Kleur varchar)''')
+    #db.commit()
 
-    #fietstrommels_sheet(11, cursor, db)
-    FietsDiefstal_sheet(11,cursor,db)
+    fietstrommels_sheet(11, cursor, db)
+    #FietsDiefstal_sheet(11,cursor,db)
 
     #cursor = db.cursor()
     #name1 = 'Joost'
