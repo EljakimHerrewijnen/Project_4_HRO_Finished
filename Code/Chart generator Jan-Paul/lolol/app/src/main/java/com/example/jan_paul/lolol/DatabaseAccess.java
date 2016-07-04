@@ -12,9 +12,9 @@ import java.util.List;
  * Created by Joostdw1 on 28-6-2016.
  */
 public class DatabaseAccess {
-    public SQLiteOpenHelper openHelper;
-    public SQLiteDatabase database;
-    public static DatabaseAccess instance;
+    private SQLiteOpenHelper openHelper;
+    private SQLiteDatabase database;
+    private static DatabaseAccess instance;
 
     private DatabaseAccess(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
@@ -70,8 +70,6 @@ public class DatabaseAccess {
         String most_deelgemeente = " ";
         String aantal_deelgemeente = " ";
         Cursor cursor = database.rawQuery("SELECT deelgemeente, COUNT(*) AS 'aantal' FROM fietstrommels GROUP BY deelgemeente ORDER BY aantal DESC limit 5", null);
-        //query(fietstrommels, new String<>, )
-        //("SELECT deelgemeente FROM fietstrommels", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             most_deelgemeente = cursor.getString(0);
@@ -85,7 +83,7 @@ public class DatabaseAccess {
         return returning_string;
     }
 
-    public List<Data> getMostfietstrommels() {
+    public List<Data> getMostfietstrommels() {          //barchart
         List<Data> mostfietstrommels_list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT deelgemeente, COUNT(*) AS 'aantal' FROM fietstrommels GROUP BY deelgemeente ORDER BY aantal DESC limit 5", null);
         cursor.moveToFirst();
@@ -100,7 +98,7 @@ public class DatabaseAccess {
         return mostfietstrommels_list;
     }
 
-    public List<Data> getMostStolenBrands() {
+    public List<Data> getMostStolenBrands() {           //piechart
         List<Data> MostStolenBrands_list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT Merk, COUNT(*) AS 'aantal' FROM Fietsendiefstal GROUP BY Merk ORDER BY aantal DESC", null);
         cursor.moveToFirst();
@@ -111,10 +109,11 @@ public class DatabaseAccess {
             cursor.moveToNext();
         }
         cursor.close();
+
         return MostStolenBrands_list;
     }
 
-    public List<Data> getMostStolenColors() {
+    public List<Data> getMostStolenColors() {           //piechart
         List<Data> MostStolenColors_list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT Kleur, COUNT(*) AS 'aantal' FROM Fietsendiefstal GROUP BY Kleur ORDER BY aantal DESC", null);
         cursor.moveToFirst();
@@ -128,9 +127,54 @@ public class DatabaseAccess {
 
         return MostStolenColors_list;
     }
+
+    public List<Data> getBicycleTheftPerMonth() {           //linechart
+        List<Data> bicycleTheft_list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT CASE WHEN Kennisname LIKE '%-1-%' THEN 'Januari' " +
+                "WHEN Kennisname LIKE '%-2-%' THEN 'Februari' " +
+                "WHEN Kennisname LIKE '%-3-%' THEN 'Maart' " +
+                "WHEN Kennisname LIKE '%-4-%' THEN 'April' " +
+                "WHEN Kennisname LIKE '%-5-%' THEN 'Mei' " +
+                "WHEN Kennisname LIKE '%-6-%' THEN 'Juni' " +
+                "WHEN Kennisname LIKE '%-7-%' THEN 'Juli' " +
+                "WHEN Kennisname LIKE '%-8-%' THEN 'Augustus' " +
+                "WHEN Kennisname LIKE '%-9-%' THEN 'September' " +
+                "WHEN Kennisname LIKE '%-10-%' THEN 'Oktober' " +
+                "WHEN Kennisname LIKE '%-11-%' THEN 'November' " +
+                "WHEN Kennisname LIKE '%-12-%' THEN 'December' " +
+                "ELSE NULL " +
+                "END AS 'month', COUNT(*) AS 'aantal' " +
+                "FROM fietsendiefstal " +
+                "WHERE (Kennisname LIKE '%-1-%') OR (Kennisname LIKE '%-2-%') OR (Kennisname LIKE '%-3-%') OR (Kennisname LIKE '%-4-%') OR (Kennisname LIKE '%-5-%') OR (Kennisname LIKE '%-6-%') OR (Kennisname LIKE '%-7-%') OR (Kennisname LIKE '%-8-%') OR (Kennisname LIKE '%-9-%') OR (Kennisname LIKE '%-10-%') OR (Kennisname LIKE '%-11-%') OR (Kennisname LIKE '%-12-%') " +
+                "GROUP BY CASE " +
+                "WHEN Kennisname LIKE '%-1-%' THEN 'Januari' " +
+                "WHEN Kennisname LIKE '%-2-%' THEN 'Februari' " +
+                "WHEN Kennisname LIKE '%-3-%' THEN 'Maart' " +
+                "WHEN Kennisname LIKE '%-4-%' THEN 'April' " +
+                "WHEN Kennisname LIKE '%-5-%' THEN 'Mei' " +
+                "WHEN Kennisname LIKE '%-6-%' THEN 'Juni' " +
+                "WHEN Kennisname LIKE '%-7-%' THEN 'Juli' " +
+                "WHEN Kennisname LIKE '%-8-%' THEN 'Augustus' " +
+                "WHEN Kennisname LIKE '%-9-%' THEN 'September' " +
+                "WHEN Kennisname LIKE '%-10-%' THEN 'Oktober' " +
+                "WHEN Kennisname LIKE '%-11-%' THEN 'November' " +
+                "WHEN Kennisname LIKE '%-12-%' THEN 'December' " +
+                "ELSE NULL END", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String months = cursor.getString(0);
+            int aantal_gestolen_fietsen = Integer.parseInt(cursor.getString(1));
+            bicycleTheft_list.add(new Data(months, aantal_gestolen_fietsen));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return bicycleTheft_list;
+    }
+
     /*
-    public List<Data> getMostStolenAndContainers() {
-        List<Data> MostStolenAndContainers_list = new ArrayList<>();
+    public List<Data2> getMostStolenAndContainers() {       //barchart
+        List<Data2> MostStolenAndContainers_list = new ArrayList<>();
         String deelgemeente = "";
         Cursor cursor = database.rawQuery("SELECT mutatiedatum, COUNT(*) AS 'aantal' FROM fietstrommels WHERE deelgemeente = ' ' GROUP BY mutatiedatum ORDER BY mutatiedatum ASC", null);
         cursor.moveToFirst();
@@ -140,20 +184,18 @@ public class DatabaseAccess {
             int aantal_fietstrommels Integer.parseInt(cursor.getString(2));
             MostStolenAndContainers_list.add(new Data2(most_colors, aantal_fietsen, aantal_fietstrommels));
             cursor.moveToNext();
-        }
-        cursor.close();
+}
+cursor.close();
 
         return MostStolenAndContainers_list;
-    }
-    */
-    /*
-    public List<Data> getBicycleTheftPerMonth() {
-        List<Data> bicycleTheft_list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Kennisname, COUNT(*) AS 'aantal' FROM fietsendiefstal GROUP BY Kennisname HAVING aantal = '%-1-%' OR '%-2-%' OR '%-3-%'OR '%-4-%'OR '%-5-%'OR '%-6-%'OR '%-7-%'OR '%-8-%'OR '%-9-%'OR '%-10-%'OR '%-11-%'OR '%-12-%'", null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            String months = cursor.getString(0);
-            months = months.substring(2, 5);
+        }
+        */
+
+}
+
+
+//select month
+/*months = months.substring(2, 5);
             if (months == "-1-"){
                 months = "Januari";
             }
@@ -189,14 +231,4 @@ public class DatabaseAccess {
             }
             if (months == "-12-"){
                 months = "December";
-            }
-            int aantal_gestolen_fietsen = Integer.parseInt(cursor.getString(1));
-            bicycleTheft_list.add(new Data(months, aantal_gestolen_fietsen));
-            cursor.moveToNext();
-        }
-        cursor.close();
-
-        return bicycleTheft_list;
-    }
-    */
-}
+            }*/
