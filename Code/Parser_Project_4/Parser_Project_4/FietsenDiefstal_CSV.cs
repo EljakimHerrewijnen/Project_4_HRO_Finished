@@ -25,7 +25,7 @@ namespace Parser_Project_4
                     if(Counter == 0) { Query += "INSERT INTO FietsenDiefstal_CSV(\n Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur) VALUES("; }
                     
                     TempCounter++;
-                    Tempstring2 += Tempstring + " ,";s
+                    Tempstring2 += Tempstring + " ,";
                     Tempstring = "";
 
                     if (TempCounter == 26)
