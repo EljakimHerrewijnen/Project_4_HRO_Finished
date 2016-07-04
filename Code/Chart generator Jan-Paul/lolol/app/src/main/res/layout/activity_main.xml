@@ -9,95 +9,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.jan_paul.lolol.MainActivity">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:stretchColumns="1"
-        android:id="@+id/tableLayout">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:text="x"
-                android:id="@+id/buttonworldx"
-                android:layout_column="2"
-                android:layout_span="16" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:text="y"
-                android:id="@+id/buttonworldy"
-                android:layout_column="17" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </TableRow>
-    </TableLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="load graph"
-        android:id="@+id/button"
+        android:text="5 neighbourhoods"
+        android:id="@+id/neighbourhoods"
         android:nestedScrollingEnabled="true"
-        android:onClick="onGenerate"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ExpandableListView
-        android:id="@+id/expandableListView"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="0.5dp"
-        android:scrollbars="vertical"
-        android:layout_above="@+id/button"
-        android:layout_alignEnd="@+id/btn_database" />
+        android:onClick="onNeighbourhoods"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Load Data"
-        android:id="@+id/btn_database"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button"
-        android:layout_below="@+id/expandableListView" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextData"
-        android:layout_toRightOf="@+id/btn_database"
-        android:text="hoi"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/expandableListView" />
+        android:text="most stolen brands"
+        android:id="@+id/moststolenbrands"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onPie"
+        android:layout_below="@+id/neighbourhoods"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_alignTop="@+id/editTextData"
-        android:layout_toEndOf="@+id/editTextData" />
+        android:text="Most stolen colors"
+        android:id="@+id/moststolencolors"
+        android:layout_below="@+id/moststolenbrands"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onPie"
+        android:nestedScrollingEnabled="false" />
 
 
 </RelativeLayout>

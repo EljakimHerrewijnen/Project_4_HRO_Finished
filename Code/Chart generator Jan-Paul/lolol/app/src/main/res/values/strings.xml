@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">lolol</string>
-    <string name="notification_title">Hello</string>
-    <string name="notification_text">TEXT</string>
 </resources>
