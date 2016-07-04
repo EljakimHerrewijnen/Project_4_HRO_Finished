@@ -53,16 +53,13 @@ public class BarActivity extends AppCompatActivity {
             ArrayList<BarEntry> a = new ArrayList<BarEntry>();
             a.add(new BarEntry(d.value, 0));
             BarDataSet s = new BarDataSet(a, d.naam);
-            //s.setBarSpacePercent(20f);
             s.setAxisDependency(YAxis.AxisDependency.LEFT);
             ArrayList<Integer> colors = new ArrayList<Integer>();
             for (int c : ColorTemplate.VORDIPLOM_COLORS)
                 colors.add(c);
             s.setColor(colors.get(counter));
             counter = counter + 1;
-
             dataSets.add(s);
-
         }
         xVals.add("");
 
@@ -70,51 +67,5 @@ public class BarActivity extends AppCompatActivity {
         chart.setData(data);
         chart.setDescription("");
         chart.invalidate();
-
-
-
-        /*
-        LineChart chart = (LineChart) findViewById(R.id.chart);
-
-        ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
-        ArrayList<Entry> valsComp2 = new ArrayList<Entry>();
-
-        valsComp1.add(new Entry(100.000f, 0));
-        valsComp1.add(new Entry(50.000f, 5));
-
-        valsComp2.add(new Entry(130.000f, 0));
-        valsComp2.add(new Entry(150.000f, 7));
-
-        LineDataSet setComp1 = new LineDataSet(valsComp1, "A");
-        setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(valsComp2, "B");
-        setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
-
-        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(setComp1);
-        dataSets.add(setComp2);
-
-        float max = 7; //highest y value
-        float min = -5; //lowest x value
-
-        ArrayList<String> xVals = new ArrayList<String>();
-
-        while (max >= min) {
-            xVals.add(Float.toString(min));
-            min = min + 1;
-        }
-
-        LineData data = new LineData(xVals, dataSets);
-        //chart.animateX(3000); //animatie van 3 secs
-        chart.setData(data);
-
-        chart.invalidate();
-        */
-
     }
-
-   // }
-
-
-
 }
