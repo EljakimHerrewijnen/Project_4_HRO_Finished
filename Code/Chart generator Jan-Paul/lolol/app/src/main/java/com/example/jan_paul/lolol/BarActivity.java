@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//import Design_Patterns.*;
+
 public class BarActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
 
@@ -27,7 +29,7 @@ public class BarActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
-        loadChart();
+        loadChart(MainActivity.id);
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -37,35 +39,62 @@ public class BarActivity extends AppCompatActivity {
 
     }
 
-    public void loadChart(){
+    public void loadChart(int id){
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
-        List<Data> deelgemeente = databaseAccess.getMostfietstrommels();
-        databaseAccess.close();
-        
+
         BarChart chart = (BarChart) findViewById(R.id.barchart);
-        chart.animateX(3000); //animatie van 3 secs
+        chart.animateY(3000); //animatie van 3 secs
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         ArrayList<String> xVals = new ArrayList<String>();
-        int counter = 0;
-        for(Iterator<Data> i = deelgemeente.iterator(); i.hasNext(); ) {
-            Data d = i.next();
-            ArrayList<BarEntry> a = new ArrayList<BarEntry>();
-            a.add(new BarEntry(d.value, 0));
-            BarDataSet s = new BarDataSet(a, d.naam);
-            s.setAxisDependency(YAxis.AxisDependency.LEFT);
-            ArrayList<Integer> colors = new ArrayList<Integer>();
-            for (int c : ColorTemplate.VORDIPLOM_COLORS)
-                colors.add(c);
-            s.setColor(colors.get(counter));
-            counter = counter + 1;
-            dataSets.add(s);
+
+        if (id == 2131493014) {
+            List<Data> dataaa;
+            dataaa = databaseAccess.getMostfietstrommels();
+            databaseAccess.close();
+            int counter = 0;
+            for(Iterator<Data> i = dataaa.iterator(); i.hasNext(); ) {
+                Data d = i.next();
+                ArrayList<BarEntry> a = new ArrayList<BarEntry>();
+                a.add(new BarEntry(d.value, 0));
+                BarDataSet s = new BarDataSet(a, d.naam);
+                s.setAxisDependency(YAxis.AxisDependency.LEFT);
+                ArrayList<Integer> colors = new ArrayList<Integer>();
+                for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                    colors.add(c);
+                s.setColor(colors.get(counter));
+                counter = counter + 1;
+                dataSets.add(s);
+            }
+        }
+        else if (id == 2131493018){
+            List<Data2> dataaa;
+            dataaa = databaseAccess.getMostStolenAndContainers();
+            databaseAccess.close();
+            int counter = 0;
+            for(Iterator<Data2> i = dataaa.iterator(); i.hasNext(); ) {
+                Data2 d = i.next();
+                ArrayList<BarEntry> a1 = new ArrayList<BarEntry>();
+                ArrayList<BarEntry> a2 = new ArrayList<BarEntry>();
+                a1.add(new BarEntry(d.value1, 0));
+                a2.add(new BarEntry(d.value2, 0));
+                BarDataSet s1 = new BarDataSet(a1, d.naam);
+                BarDataSet s2 = new BarDataSet(a2, d.naam);
+                s1.setAxisDependency(YAxis.AxisDependency.LEFT);
+                ArrayList<Integer> colors = new ArrayList<Integer>();
+                for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                    colors.add(c);
+                s1.setColor(colors.get(1));
+                s2.setColor(colors.get(3));
+                counter = counter + 1;
+                dataSets.add(s1);
+                dataSets.add(s2);
+            }
         }
         xVals.add("");
-
         BarData data = new BarData(xVals, dataSets);
         chart.setData(data);
-        chart.setDescription("");
+        chart.setDescription(Integer.toString(id));
         chart.invalidate();
     }
 }

@@ -257,7 +257,7 @@ public class DatabaseAccess {
                 aantal_fietsen = Integer.parseInt(cursor.getString(1));
             }
             if (k == 2){
-                aantal_fietstrommels = Integer.parseInt(cursor.getString(2));
+                aantal_fietstrommels = Integer.parseInt(cursor.getString(1));
                 MostStolenAndContainers_list.add(new Data2(months, aantal_fietsen, aantal_fietstrommels));
                 k = 0;
             }

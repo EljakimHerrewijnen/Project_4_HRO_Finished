@@ -68,8 +68,8 @@ public class LineActivity extends AppCompatActivity {
             counter = counter + 1;
             xVals.add(d.naam);
         }
-
         LineDataSet setComp1 = new LineDataSet(valsComp1, "bicycles stolen");
+        setComp1.setDrawFilled(true);
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setComp1);
