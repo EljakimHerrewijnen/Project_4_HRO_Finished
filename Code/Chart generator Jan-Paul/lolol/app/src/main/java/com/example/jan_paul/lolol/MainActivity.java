@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onStop();
     }
 
-    public void onNeighbourhoods(View v){
+    public void onBar(View v){
         Intent intent = new Intent(this, BarActivity.class);
         id = v.getId();
         startActivity(intent);

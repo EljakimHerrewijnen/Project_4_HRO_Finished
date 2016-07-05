@@ -6,6 +6,6 @@ package Design_Patterns;
 public interface Option<T> {
     // C# C# SYNTAX ==> U Visit<U> (IOptionVisitor<T,U> visitor);
     //Java syntax down here, so this is the real line!
-    <U extends Option<T>> U Visit(IOptionVisitor<T, U> visitor) throws Exception;
+    <U> U Visit(IOptionVisitor<T, U> visitor) throws Exception;
     boolean IsSome();
 }

@@ -9,7 +9,7 @@ public class Some<T> implements Option<T> {
     public Some(T Value) { this.Value = Value; } //constructor
 
     @Override
-    public <U extends Option<T>> U Visit(IOptionVisitor<T, U> visitor) throws Exception {
+    public <U> U Visit(IOptionVisitor<T, U> visitor) throws Exception {
         return visitor.onSome(this.Value);
     }
 
