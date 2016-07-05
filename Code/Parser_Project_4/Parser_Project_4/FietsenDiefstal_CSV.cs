@@ -34,7 +34,8 @@ namespace Parser_Project_4
                         Tempstring2 = Tempstring2.Remove(Tempstring2.Length - 15);
                         Tempstring2 += (char)34 + ");";
                         Query += Tempstring2;
-                        Tempstring2 = (char)34 + Tempstring2.Substring(Tempstring2.Length - 17) + (char)34 + " ,";
+                        Tempstring2 = "";
+                       // Tempstring2 = (char)34 + Tempstring2.Substring(Tempstring2.Length - 17) + (char)34 + " ,";
                     }
                 }
                 else { Tempstring += Character; }
