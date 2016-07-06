@@ -80,7 +80,12 @@ namespace Parser_Project_4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "") { System.Windows.Forms.Clipboard.SetText(textBox1.Text); }
+            //  if (textBox1.Text != "") { System.Windows.Forms.Clipboard.SetText(textBox1.Text); }
+            int charcounter = 0;
+            string testchar = "";
+            string Teller = "FT1;;;FT;;Fietstrommel;;;;ESSENBURGSNGL;9;;;;;;;;51,92293167;4,46130991;;;;;;;;;Delfshaven;;;A;19-05-2010;STREPE;";
+            foreach(char c in Teller) { testchar = c.ToString(); if (testchar == ";") {  charcounter ++; } }
+            MessageBox.Show(charcounter.ToString());
         }
 
         private void parseCSVFileToolStripMenuItem_Click(object sender, EventArgs e)
