@@ -40,6 +40,8 @@ public class DatabaseAccess {
         this.database = openHelper.getWritableDatabase();
     }
 
+    public SQLiteDatabase getdatabase() { return this.database; }
+
     /**
      * Close the database connection.
      */
@@ -166,9 +168,42 @@ public class DatabaseAccess {
         return bicycleTheft_list;
     }
 
-    public List<Data> getMostStolenAndContainers_Part1(){   //grouped_barchart part 1
-        List<Data> Part1_list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT CASE WHEN mutatiedatum LIKE '%-1-%' THEN 'Januari' " +
+    public List<Data2> getMostStolenAndContainers() {       //grouped_barchart
+        List<Data2> MostStolenAndContainers_list = new ArrayList<>();
+        //String deelgemeente = "";
+        Cursor cursor = database.rawQuery("SELECT CASE WHEN Kennisname LIKE '%-1-%' THEN 'Januari' " +
+                "WHEN Kennisname LIKE '%-2-%' THEN 'Februari' " +
+                "WHEN Kennisname LIKE '%-3-%' THEN 'Maart' " +
+                "WHEN Kennisname LIKE '%-4-%' THEN 'April' " +
+                "WHEN Kennisname LIKE '%-5-%' THEN 'Mei' " +
+                "WHEN Kennisname LIKE '%-6-%' THEN 'Juni' " +
+                "WHEN Kennisname LIKE '%-7-%' THEN 'Juli' " +
+                "WHEN Kennisname LIKE '%-8-%' THEN 'Augustus' " +
+                "WHEN Kennisname LIKE '%-9-%' THEN 'September' " +
+                "WHEN Kennisname LIKE '%-10-%' THEN 'Oktober' " +
+                "WHEN Kennisname LIKE '%-11-%' THEN 'November' " +
+                "WHEN Kennisname LIKE '%-12-%' THEN 'December' " +
+                "ELSE NULL " +
+                "END AS 'month', COUNT(*) AS 'aantal' " +
+                "FROM Fietsendiefstal " +
+                "WHERE (Kennisname LIKE '%-1-%') OR (Kennisname LIKE '%-2-%') OR (Kennisname LIKE '%-3-%') OR (Kennisname LIKE '%-4-%') OR (Kennisname LIKE '%-5-%') OR (Kennisname LIKE '%-6-%') OR (Kennisname LIKE '%-7-%') OR (Kennisname LIKE '%-8-%') OR (Kennisname LIKE '%-9-%') OR (Kennisname LIKE '%-10-%') OR (Kennisname LIKE '%-11-%') OR (Kennisname LIKE '%-12-%') " +
+                "GROUP BY CASE " +
+                "WHEN Kennisname LIKE '%-1-%' THEN 'Januari' " +
+                "WHEN Kennisname LIKE '%-2-%' THEN 'Februari' " +
+                "WHEN Kennisname LIKE '%-3-%' THEN 'Maart' " +
+                "WHEN Kennisname LIKE '%-4-%' THEN 'April' " +
+                "WHEN Kennisname LIKE '%-5-%' THEN 'Mei' " +
+                "WHEN Kennisname LIKE '%-6-%' THEN 'Juni' " +
+                "WHEN Kennisname LIKE '%-7-%' THEN 'Juli' " +
+                "WHEN Kennisname LIKE '%-8-%' THEN 'Augustus' " +
+                "WHEN Kennisname LIKE '%-9-%' THEN 'September' " +
+                "WHEN Kennisname LIKE '%-10-%' THEN 'Oktober' " +
+                "WHEN Kennisname LIKE '%-11-%' THEN 'November' " +
+                "WHEN Kennisname LIKE '%-12-%' THEN 'December' " +
+                "ELSE NULL " +
+                "END " +
+                "UNION " +
+                "SELECT CASE WHEN mutatiedatum LIKE '%-1-%' THEN 'Januari' " +
                 "WHEN mutatiedatum LIKE '%-2-%' THEN 'Februari' " +
                 "WHEN mutatiedatum LIKE '%-3-%' THEN 'Maart' " +
                 "WHEN mutatiedatum LIKE '%-4-%' THEN 'April' " +
@@ -197,114 +232,17 @@ public class DatabaseAccess {
                 "WHEN mutatiedatum LIKE '%-10-%' THEN 'Oktober' " +
                 "WHEN mutatiedatum LIKE '%-11-%' THEN 'November' " +
                 "WHEN mutatiedatum LIKE '%-12-%' THEN 'December' " +
-                "ELSE NULL END ", null);
-        String months;
-        int aantal_fietstrommels;
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            months = cursor.getString(0);
-            aantal_fietstrommels = Integer.parseInt(cursor.getString(1));
-            Part1_list.add(new Data(months, aantal_fietstrommels));
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return Part1_list;
-    }
-
-    public List<Data2> getMostStolenAndContainers() {       //grouped_barchart
-        List<Data2> MostStolenAndContainers_list = new ArrayList<>();
-        //String deelgemeente = "";
-        Cursor cursor = database.rawQuery("SELECT " +
-                "CASE " +
-                "WHEN Kennisname LIKE '%-1-%' THEN 'Januari' " +
-                "WHEN Kennisname LIKE '%-2-%' THEN 'Februari' " +
-                "WHEN Kennisname LIKE '%-3-%' THEN 'Maart' " +
-                "WHEN Kennisname LIKE '%-4-%' THEN 'April' " +
-                "WHEN Kennisname LIKE '%-5-%' THEN 'Mei' " +
-                "WHEN Kennisname LIKE '%-6-%' THEN 'Juni' " +
-                "WHEN Kennisname LIKE '%-7-%' THEN 'Juli' " +
-                "WHEN Kennisname LIKE '%-8-%' THEN 'Augustus' " +
-                "WHEN Kennisname LIKE '%-9-%' THEN 'September' " +
-                "WHEN Kennisname LIKE '%-10-%' THEN 'Oktober' " +
-                "WHEN Kennisname LIKE '%-11-%' THEN 'November' " +
-                "WHEN Kennisname LIKE '%-12-%' THEN 'December' " +
-                "ELSE NULL " +
-                "END AS 'month', COUNT(*) AS 'aantal' " +
-                "FROM Fietsendiefstal " +
-                "WHERE (Kennisname LIKE '%-1-%') OR (Kennisname LIKE '%-2-%') OR (Kennisname LIKE '%-3-%') OR (Kennisname LIKE '%-4-%') OR (Kennisname LIKE '%-5-%') OR (Kennisname LIKE '%-6-%') OR (Kennisname LIKE '%-7-%') OR (Kennisname LIKE '%-8-%') OR (Kennisname LIKE '%-9-%') OR (Kennisname LIKE '%-10-%') OR (Kennisname LIKE '%-11-%') OR (Kennisname LIKE '%-12-%') " +
-                "GROUP BY " +
-                "CASE " +
-                "WHEN Kennisname LIKE '%-1-%' THEN 'Januari' " +
-                "WHEN Kennisname LIKE '%-2-%' THEN 'Februari' " +
-                "WHEN Kennisname LIKE '%-3-%' THEN 'Maart' " +
-                "WHEN Kennisname LIKE '%-4-%' THEN 'April' " +
-                "WHEN Kennisname LIKE '%-5-%' THEN 'Mei' " +
-                "WHEN Kennisname LIKE '%-6-%' THEN 'Juni' " +
-                "WHEN Kennisname LIKE '%-7-%' THEN 'Juli' " +
-                "WHEN Kennisname LIKE '%-8-%' THEN 'Augustus' " +
-                "WHEN Kennisname LIKE '%-9-%' THEN 'September' " +
-                "WHEN Kennisname LIKE '%-10-%' THEN 'Oktober' " +
-                "WHEN Kennisname LIKE '%-11-%' THEN 'November' " +
-                "WHEN Kennisname LIKE '%-12-%' THEN 'December' " +
                 "ELSE NULL " +
                 "END ", null);
         cursor.moveToFirst();
-        /*Cursor cursor2 = database.rawQuery("SELECT " +
-                "CASE " +
-                "WHEN mutatiedatum LIKE '%-1-%' THEN 'Januari' " +
-                "WHEN mutatiedatum LIKE '%-2-%' THEN 'Februari' " +
-                "WHEN mutatiedatum LIKE '%-3-%' THEN 'Maart' " +
-                "WHEN mutatiedatum LIKE '%-4-%' THEN 'April' " +
-                "WHEN mutatiedatum LIKE '%-5-%' THEN 'Mei' " +
-                "WHEN mutatiedatum LIKE '%-6-%' THEN 'Juni' " +
-                "WHEN mutatiedatum LIKE '%-7-%' THEN 'Juli' " +
-                "WHEN mutatiedatum LIKE '%-8-%' THEN 'Augustus' " +
-                "WHEN mutatiedatum LIKE '%-9-%' THEN 'September' " +
-                "WHEN mutatiedatum LIKE '%-10-%' THEN 'Oktober' " +
-                "WHEN mutatiedatum LIKE '%-11-%' THEN 'November' " +
-                "WHEN mutatiedatum LIKE '%-12-%' THEN 'December' " +
-                "ELSE NULL " +
-                "END AS 'month', COUNT(*) AS 'aantal' " +
-                "FROM fietstrommels " +
-                "WHERE (mutatiedatum LIKE '%-1-%') OR (mutatiedatum LIKE '%-2-%') OR (mutatiedatum LIKE '%-3-%') OR (mutatiedatum LIKE '%-4-%') OR (mutatiedatum LIKE '%-5-%') OR (mutatiedatum LIKE '%-6-%') OR (mutatiedatum LIKE '%-7-%') OR (mutatiedatum LIKE '%-8-%') OR (mutatiedatum LIKE '%-9-%') OR (mutatiedatum LIKE '%-10-%') OR (mutatiedatum LIKE '%-11-%') OR (mutatiedatum LIKE '%-12-%') " +
-                "GROUP BY " +
-                "CASE " +
-                "WHEN mutatiedatum LIKE '%-1-%' THEN 'Januari'  " +
-                "WHEN mutatiedatum LIKE '%-2-%' THEN 'Februari' " +
-                "WHEN mutatiedatum LIKE '%-3-%' THEN 'Maart' " +
-                "WHEN mutatiedatum LIKE '%-4-%' THEN 'April' " +
-                "WHEN mutatiedatum LIKE '%-5-%' THEN 'Mei' " +
-                "WHEN mutatiedatum LIKE '%-6-%' THEN 'Juni' " +
-                "WHEN mutatiedatum LIKE '%-7-%' THEN 'Juli' " +
-                "WHEN mutatiedatum LIKE '%-8-%' THEN 'Augustus' " +
-                "WHEN mutatiedatum LIKE '%-9-%' THEN 'September' " +
-                "WHEN mutatiedatum LIKE '%-10-%' THEN 'Oktober' " +
-                "WHEN mutatiedatum LIKE '%-11-%' THEN 'November' " +
-                "WHEN mutatiedatum LIKE '%-12-%' THEN 'December' " +
-                "ELSE NULL " +
-                "END ", null);
-        cursor2.moveToFirst();*/
-        int k = 0;
         String months;
         int aantal_fietsen;
         int aantal_fietstrommels;
-        List<Data> fietstrommelslist = getMostStolenAndContainers_Part1();
-        while (!cursor.isAfterLast()) {// && !cursor2.isAfterLast()) {
-            /*k = k + 1;
-            if (k == 1){
-                months = cursor.getString(0);
-                aantal_fietsen = Integer.parseInt(cursor.getString(1));
-            }
-            if (k == 2){
-                aantal_fietstrommels = Integer.parseInt(cursor.getString(1));
-                MostStolenAndContainers_list.add(new Data2(months, aantal_fietsen, aantal_fietstrommels));
-                k = 0;
-            }
-            cursor.moveToNext();*/
+        while (!cursor.isAfterLast()) {
             months = cursor.getString(0);
             aantal_fietsen = Integer.parseInt(cursor.getString(1));
-            aantal_fietstrommels = 2;//fietstrommelslist.get(k).getValue();
-            k = k + 1;
+            cursor.moveToNext();
+            aantal_fietstrommels = Integer.parseInt(cursor.getString(1));
             MostStolenAndContainers_list.add(new Data2(months, aantal_fietsen, aantal_fietstrommels));
             cursor.moveToNext();
         }
@@ -312,43 +250,3 @@ public class DatabaseAccess {
         return MostStolenAndContainers_list;
         }
 }
-
-
-//select month
-/*months = months.substring(2, 5);
-            if (months == "-1-"){
-                months = "Januari";
-            }
-            if (months == "-2-"){
-                months = "Februari";
-            }
-            if (months == "-3-"){
-                months = "Maart";
-            }
-            if (months == "-4-"){
-                months = "April";
-            }
-            if (months == "-5-"){
-                months = "Mei";
-            }
-            if (months == "-6-"){
-                months = "Juni";
-            }
-            if (months == "-7-"){
-                months = "Juli";
-            }
-            if (months == "-8-"){
-                months = "Augustus";
-            }
-            if (months == "-9-"){
-                months = "September";
-            }
-            if (months == "-10-"){
-                months = "Oktober";
-            }
-            if (months == "-11-"){
-                months = "November";
-            }
-            if (months == "-12-"){
-                months = "December";
-            }*/
