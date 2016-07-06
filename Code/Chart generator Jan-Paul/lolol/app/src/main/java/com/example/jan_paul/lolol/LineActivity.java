@@ -77,7 +77,7 @@ public class LineActivity extends AppCompatActivity {
         float min = 0; //lowest x value
 
         LineData data = new LineData(xVals, dataSets);
-        chart.animateX(2000); //animatie van 3 secs
+        chart.animateY(2000); //animatie van 3 secs
         chart.setData(data);
         chart.invalidate();
     }

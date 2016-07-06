@@ -36,7 +36,6 @@ public class BarActivity extends AppCompatActivity {
         Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
-
     }
 
     public void loadChart(int id){
@@ -44,11 +43,11 @@ public class BarActivity extends AppCompatActivity {
         databaseAccess.open();
 
         BarChart chart = (BarChart) findViewById(R.id.barchart);
-        chart.animateY(3000); //animatie van 3 secs
+        chart.animateY(3000);
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         ArrayList<String> xVals = new ArrayList<String>();
 
-        if (id == 2131493014) {
+        if (id == 2131493024) {
             List<Data> dataaa;
             dataaa = databaseAccess.getMostfietstrommels();
             databaseAccess.close();
@@ -67,7 +66,7 @@ public class BarActivity extends AppCompatActivity {
                 dataSets.add(s);
             }
         }
-        else if (id == 2131493018){
+        else if (id == 2131493028){
             List<Data2> dataaa;
             dataaa = databaseAccess.getMostStolenAndContainers();
             databaseAccess.close();
@@ -94,7 +93,7 @@ public class BarActivity extends AppCompatActivity {
         xVals.add("");
         BarData data = new BarData(xVals, dataSets);
         chart.setData(data);
-        chart.setDescription(Integer.toString(id));
+        chart.setDescription("ffs");
         chart.invalidate();
     }
 }
