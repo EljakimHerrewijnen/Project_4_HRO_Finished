@@ -11,7 +11,6 @@ namespace Parser_Project_4
 
         public static void OpenFile(string ExcelFile)
         {
-          //  int Counter = 0;
             int TempCounter = 0;
             string Tempstring ="";
             string Tempstring2 = "";
@@ -32,9 +31,7 @@ namespace Parser_Project_4
                 if(Character == ",")
                 {
                     ExcelLength++;
-                    if (ExcelLength == 1) { Query += "INSERT INTO FietsenDiefstal_CSV (Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\n VALUES("; }
-                    if (TempCounter == 1 && ExcelLength != 1){Query += "INSERT INTO FietsenDiefstal_CSV (Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\n VALUES(" + (char)39 + NumberFilter + (char)39 + ", ";} //(Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\nVALUES("; }
-
+                    if (TempCounter == 1){ Query += "INSERT INTO FietsenDiefstal_CSV (Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\n VALUES("; if (ExcelLength > 2) { Query += (char)39 + NumberFilter + (char)39 + ", "; } } //(Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\nVALUES("; }
                     TempCounter++;
                     if (Tempstring == "") { Tempstring = " "; }
                     if (TempCounter != 25) { Tempstring2 += (char)39 + Tempstring + (char)39 + " ,"; }
@@ -63,8 +60,7 @@ namespace Parser_Project_4
                 }
                 else { Tempstring += Character; }
             }
-           // Console.WriteLine(Query);
-            System.Windows.Forms.Clipboard.SetText(Query);
+            Form1._Form1.SetTBText(Query);
         }
     }
 }

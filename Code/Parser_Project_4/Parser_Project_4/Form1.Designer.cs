@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.parseCSVFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parseFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,19 +42,19 @@
             this.TB_IPaddr = new System.Windows.Forms.TextBox();
             this.TB_Port = new System.Windows.Forms.TextBox();
             this.TB_Datab = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.TB_Uname = new System.Windows.Forms.TextBox();
+            this.TB_Pass = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.RB_Fietstrommels = new System.Windows.Forms.RadioButton();
-            this.RB_Fietsendiefstal = new System.Windows.Forms.RadioButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.button2 = new System.Windows.Forms.Button();
-            this.parseCSVFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fietsenDiefstalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fietsenTrommelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Btn_TestConnection = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +87,16 @@
             this.newFileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.newFileToolStripMenuItem.Text = "New File";
             this.newFileToolStripMenuItem.Click += new System.EventHandler(this.newFileToolStripMenuItem_Click);
+            // 
+            // parseCSVFileToolStripMenuItem
+            // 
+            this.parseCSVFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fietsenDiefstalToolStripMenuItem,
+            this.fietsenTrommelsToolStripMenuItem});
+            this.parseCSVFileToolStripMenuItem.Name = "parseCSVFileToolStripMenuItem";
+            this.parseCSVFileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.parseCSVFileToolStripMenuItem.Text = "Parse .CSV File";
+            this.parseCSVFileToolStripMenuItem.Click += new System.EventHandler(this.parseCSVFileToolStripMenuItem_Click);
             // 
             // parseFileToolStripMenuItem
             // 
@@ -150,21 +161,21 @@
             this.TB_Datab.TabIndex = 4;
             this.TB_Datab.Text = "Fietsendiefstal";
             // 
-            // textBox5
+            // TB_Uname
             // 
-            this.textBox5.Location = new System.Drawing.Point(297, 252);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 5;
-            this.textBox5.Text = "username";
+            this.TB_Uname.Location = new System.Drawing.Point(297, 252);
+            this.TB_Uname.Name = "TB_Uname";
+            this.TB_Uname.Size = new System.Drawing.Size(100, 20);
+            this.TB_Uname.TabIndex = 5;
+            this.TB_Uname.Text = "Postgres";
             // 
-            // textBox6
+            // TB_Pass
             // 
-            this.textBox6.Location = new System.Drawing.Point(297, 281);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 6;
-            this.textBox6.Text = "password";
+            this.TB_Pass.Location = new System.Drawing.Point(297, 281);
+            this.TB_Pass.Name = "TB_Pass";
+            this.TB_Pass.Size = new System.Drawing.Size(100, 20);
+            this.TB_Pass.TabIndex = 6;
+            this.TB_Pass.Text = "password";
             // 
             // label1
             // 
@@ -221,63 +232,54 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // RB_Fietstrommels
-            // 
-            this.RB_Fietstrommels.AutoSize = true;
-            this.RB_Fietstrommels.Location = new System.Drawing.Point(225, 330);
-            this.RB_Fietstrommels.Name = "RB_Fietstrommels";
-            this.RB_Fietstrommels.Size = new System.Drawing.Size(85, 17);
-            this.RB_Fietstrommels.TabIndex = 13;
-            this.RB_Fietstrommels.TabStop = true;
-            this.RB_Fietstrommels.Text = "fietstrommels";
-            this.RB_Fietstrommels.UseVisualStyleBackColor = true;
-            this.RB_Fietstrommels.CheckedChanged += new System.EventHandler(this.RB_Fietstrommels_CheckedChanged);
-            // 
-            // RB_Fietsendiefstal
-            // 
-            this.RB_Fietsendiefstal.AutoSize = true;
-            this.RB_Fietsendiefstal.Location = new System.Drawing.Point(225, 307);
-            this.RB_Fietsendiefstal.Name = "RB_Fietsendiefstal";
-            this.RB_Fietsendiefstal.Size = new System.Drawing.Size(92, 17);
-            this.RB_Fietsendiefstal.TabIndex = 14;
-            this.RB_Fietsendiefstal.TabStop = true;
-            this.RB_Fietsendiefstal.Text = "Fietsendiefstal";
-            this.RB_Fietsendiefstal.UseVisualStyleBackColor = true;
-            this.RB_Fietsendiefstal.CheckedChanged += new System.EventHandler(this.RB_Fietsendiefstal_CheckedChanged);
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(321, 348);
+            this.button2.Location = new System.Drawing.Point(413, 250);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(75, 48);
             this.button2.TabIndex = 15;
-            this.button2.Text = "button2";
+            this.button2.Text = "Copy to clipboard";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // parseCSVFileToolStripMenuItem
+            // fietsenDiefstalToolStripMenuItem
             // 
-            this.parseCSVFileToolStripMenuItem.Name = "parseCSVFileToolStripMenuItem";
-            this.parseCSVFileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.parseCSVFileToolStripMenuItem.Text = "Parse .CSV File";
-            this.parseCSVFileToolStripMenuItem.Click += new System.EventHandler(this.parseCSVFileToolStripMenuItem_Click);
+            this.fietsenDiefstalToolStripMenuItem.Name = "fietsenDiefstalToolStripMenuItem";
+            this.fietsenDiefstalToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.fietsenDiefstalToolStripMenuItem.Text = "FietsenDiefstal";
+            this.fietsenDiefstalToolStripMenuItem.Click += new System.EventHandler(this.fietsenDiefstalToolStripMenuItem_Click);
+            // 
+            // fietsenTrommelsToolStripMenuItem
+            // 
+            this.fietsenTrommelsToolStripMenuItem.Name = "fietsenTrommelsToolStripMenuItem";
+            this.fietsenTrommelsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.fietsenTrommelsToolStripMenuItem.Text = "FietsenTrommels";
+            // 
+            // Btn_TestConnection
+            // 
+            this.Btn_TestConnection.Location = new System.Drawing.Point(225, 307);
+            this.Btn_TestConnection.Name = "Btn_TestConnection";
+            this.Btn_TestConnection.Size = new System.Drawing.Size(115, 23);
+            this.Btn_TestConnection.TabIndex = 16;
+            this.Btn_TestConnection.Text = "Test Connection";
+            this.Btn_TestConnection.UseVisualStyleBackColor = true;
+            this.Btn_TestConnection.Click += new System.EventHandler(this.Btn_TestConnection_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 383);
+            this.Controls.Add(this.Btn_TestConnection);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.RB_Fietsendiefstal);
-            this.Controls.Add(this.RB_Fietstrommels);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.TB_Pass);
+            this.Controls.Add(this.TB_Uname);
             this.Controls.Add(this.TB_Datab);
             this.Controls.Add(this.TB_Port);
             this.Controls.Add(this.TB_IPaddr);
@@ -308,19 +310,20 @@
         private System.Windows.Forms.TextBox TB_IPaddr;
         private System.Windows.Forms.TextBox TB_Port;
         private System.Windows.Forms.TextBox TB_Datab;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox TB_Uname;
+        private System.Windows.Forms.TextBox TB_Pass;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton RB_Fietstrommels;
-        private System.Windows.Forms.RadioButton RB_Fietsendiefstal;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem parseCSVFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fietsenDiefstalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fietsenTrommelsToolStripMenuItem;
+        private System.Windows.Forms.Button Btn_TestConnection;
     }
 }
 
