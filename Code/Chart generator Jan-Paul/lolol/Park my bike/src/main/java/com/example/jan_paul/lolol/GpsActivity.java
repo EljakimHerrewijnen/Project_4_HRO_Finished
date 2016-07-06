@@ -12,14 +12,13 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +29,6 @@ import com.google.android.gms.location.LocationServices;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 import Design_Patterns.IOptionVisitor;
@@ -48,21 +46,12 @@ public class GpsActivity extends AppCompatActivity implements
     public GoogleApiClient mGoogleApiClient;
     public Location mLastLocation = null;
 
-    Button btnLoadData, FindAdressButton, SetCalenderNote;
-    EditText editTxtData, begintijd, eindtijd, beschrijving;
+    Button FindAdressButton, SetCalenderNote;
+    EditText begintijd, eindtijd, beschrijving;
     Geocoder geocoder;
     TextView FoundAdressText, mLatitudeText, mLongitudeText;
     String variableforadress = "null";
     IOptionVisitor<Double, Double> the_visitor = new OptionVisitor<Double>();
-
-
-    //filters
-    public static String ChartType = "";
-
-    ExpandableListView expandableListView;
-    ExpandableListAdapter expandableListAdapter;
-    List<String> expandableListTitle;
-    HashMap<String, List<String>> expandableListDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,19 +70,13 @@ public class GpsActivity extends AppCompatActivity implements
         FindAdressButton = (Button) findViewById(R.id.findaddresss);
         SetCalenderNote = (Button) findViewById(R.id.button3);
 
-
         geocoder = new Geocoder(this);
-
-
-
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks((GoogleApiClient.ConnectionCallbacks) this)
                 .addOnConnectionFailedListener((GoogleApiClient.OnConnectionFailedListener) this)
                 .addApi(LocationServices.API)
                 .build();
-
-
 
         FindAdressButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -116,8 +99,6 @@ public class GpsActivity extends AppCompatActivity implements
                         lon = lonpart1.Visit(the_visitor);
                     }catch(Exception e){}
 
-
-
                 }catch (NumberFormatException ex){
                     parsable = false;
                     Toast.makeText(GpsActivity.this,
@@ -125,14 +106,12 @@ public class GpsActivity extends AppCompatActivity implements
                             Toast.LENGTH_LONG).show();
                 }
 
-
                 if(parsable){
                     Toast.makeText(GpsActivity.this,
                             "find " + lat + " : " + lon,
                             Toast.LENGTH_SHORT).show();
 
                     List<Address> geoResult = findGeocoder(lat, lon);
-
 
                     List<String> geoStringResult = new ArrayList<String>();
                     String stringThisAddress = "";
@@ -171,7 +150,6 @@ public class GpsActivity extends AppCompatActivity implements
         super.onStop();
     }
 
-
     @Override
     public void onConnected(Bundle connectionHint) {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -187,16 +165,11 @@ public class GpsActivity extends AppCompatActivity implements
 
     @Override
     public void onConnectionSuspended(int i) {
-
     }
-
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
-
-
 
     private List<Address> findGeocoder(Double lat, Double lon){
         final int maxResults = 1;
@@ -211,10 +184,6 @@ public class GpsActivity extends AppCompatActivity implements
         return addresses;
     }
 
-
-
-
-
     public void Set_Calender_Note(View v) {
 
 
@@ -225,10 +194,7 @@ public class GpsActivity extends AppCompatActivity implements
         }
 
         else {
-
             String textinputbegintijd, textinputeindtijd, textinputbeschrijving;
-
-
             if (begintijd.getText().toString() == "Begintijd" || begintijd.getText().toString().split(":").length != 5 ){
                 textinputbegintijd = "2016:1:1:9:00";
             }
@@ -287,7 +253,6 @@ public class GpsActivity extends AppCompatActivity implements
             values.put(CalendarContract.Events.CALENDAR_ID, calID);
             values.put(CalendarContract.Events.EVENT_TIMEZONE, "America/Los_Angeles");
             values.put(CalendarContract.Events.EVENT_LOCATION, variableforadress);
-
 
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
                 return;

@@ -23,8 +23,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import Design_Patterns.Adapted_List;
+import Design_Patterns.IOptionVisitor;
+import Design_Patterns.Option;
+import Design_Patterns.OptionVisitor;
+
 public class LineActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
+    public IOptionVisitor<Data, Data> the_visitor = new OptionVisitor<Data>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,37 +51,35 @@ public class LineActivity extends AppCompatActivity {
     public void loadChart(int id){
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
-        List<Data> dataaa;
-        if (id == 2131493015) {
-            dataaa = databaseAccess.getMostStolenBrands();
-        }
-        else if (id == 2131493016){
-            dataaa = databaseAccess.getMostStolenColors();
-        }
-        else {
-            //this will never happen but whatever
-            dataaa = databaseAccess.getBicycleTheftPerMonth();
-        }
+        List<Data> olddataaa;
+        olddataaa = databaseAccess.getBicycleTheftPerMonth();
         databaseAccess.close();
+        FixMonthOrder fix = new FixMonthOrder();
+        List<Data> dataaa = fix.FixMonth(olddataaa);
 
         LineChart chart = (LineChart) findViewById(R.id.linechart);
+        chart.setDescription("Stolen bikes per month");
         ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
         ArrayList<String> xVals = new ArrayList<String>();
         int counter = 0;
-        for(Iterator<Data> i = dataaa.iterator(); i.hasNext(); ) {
-            Data d = i.next();
-            valsComp1.add(new Entry(d.value, counter));
+        Adapted_List<Data> adaptedlist = new Adapted_List(dataaa);
+        Option<Data> thenewsome  = adaptedlist.GetNext();
+        while (thenewsome.IsSome() == true) {
+            try {
+                Data d = thenewsome.Visit(the_visitor);
+                valsComp1.add(new Entry(d.value, counter));
+                xVals.add(d.naam);
+                thenewsome = adaptedlist.GetNext();
+            }
+            catch (Exception e){}
             counter = counter + 1;
-            xVals.add(d.naam);
         }
+
         LineDataSet setComp1 = new LineDataSet(valsComp1, "bicycles stolen");
         setComp1.setDrawFilled(true);
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setComp1);
-        float max = counter; //highest y value
-        float min = 0; //lowest x value
-
         LineData data = new LineData(xVals, dataSets);
         chart.animateY(2000); //animatie van 3 secs
         chart.setData(data);

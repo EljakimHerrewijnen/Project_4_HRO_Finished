@@ -24,10 +24,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0'
     compile files('libs/mpandroidchartlibrary-2-2-4.jar')
     compile files('libs/poi-3.14-20160307.jar')
+    compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'com.google.android.gms:play-services:9.2.0'
     compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:design:24.0.0'
 }

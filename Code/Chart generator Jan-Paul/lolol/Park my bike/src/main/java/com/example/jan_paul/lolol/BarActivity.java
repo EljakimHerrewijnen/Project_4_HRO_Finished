@@ -10,6 +10,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
@@ -17,10 +18,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//import Design_Patterns.*;
+import Design_Patterns.Adapted_List;
+import Design_Patterns.IOptionVisitor;
+import Design_Patterns.Option;
+import Design_Patterns.OptionVisitor;
 
 public class BarActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
+    public IOptionVisitor<Data, Data> the_visitor = new OptionVisitor<Data>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,34 +48,45 @@ public class BarActivity extends AppCompatActivity {
         databaseAccess.open();
 
         BarChart chart = (BarChart) findViewById(R.id.barchart);
-        chart.animateY(3000);
+        chart.animateY(2000);
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         ArrayList<String> xVals = new ArrayList<String>();
 
         if (id == 2131493024) {
+            chart.setDescription("5 neigbourhoods with most fietstrommels");
             List<Data> dataaa;
             dataaa = databaseAccess.getMostfietstrommels();
             databaseAccess.close();
             int counter = 0;
-            for(Iterator<Data> i = dataaa.iterator(); i.hasNext(); ) {
-                Data d = i.next();
-                ArrayList<BarEntry> a = new ArrayList<BarEntry>();
-                a.add(new BarEntry(d.value, 0));
-                BarDataSet s = new BarDataSet(a, d.naam);
-                s.setAxisDependency(YAxis.AxisDependency.LEFT);
-                ArrayList<Integer> colors = new ArrayList<Integer>();
-                for (int c : ColorTemplate.VORDIPLOM_COLORS)
-                    colors.add(c);
-                s.setColor(colors.get(counter));
+            Adapted_List<Data> adaptedlist = new Adapted_List(dataaa);
+            Option<Data> thenewsome  = adaptedlist.GetNext();
+            while (thenewsome.IsSome() == true) {
+                try {
+                    Data d = thenewsome.Visit(the_visitor);
+                    ArrayList<BarEntry> a = new ArrayList<BarEntry>();
+                    a.add(new BarEntry(d.value, 0));
+                    BarDataSet s = new BarDataSet(a, d.naam);
+                    s.setAxisDependency(YAxis.AxisDependency.LEFT);
+                    ArrayList<Integer> colors = new ArrayList<Integer>();
+                    for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                        colors.add(c);
+                    s.setColor(colors.get(counter));
+                    dataSets.add(s);
+                    thenewsome = adaptedlist.GetNext();
+                }
+                catch (Exception e){}
                 counter = counter + 1;
-                dataSets.add(s);
             }
+
         }
         else if (id == 2131493028){
+            chart.setDescription("Most stolen bikes + amount of fietscontainers");
             List<Data2> dataaa;
             dataaa = databaseAccess.getMostStolenAndContainers();
             databaseAccess.close();
             int counter = 0;
+            Adapted_List<Data> adaptedlist = new Adapted_List(dataaa);
+            Option<Data> thenewsome  = adaptedlist.GetNext();
             for(Iterator<Data2> i = dataaa.iterator(); i.hasNext(); ) {
                 Data2 d = i.next();
                 ArrayList<BarEntry> a1 = new ArrayList<BarEntry>();
@@ -93,7 +109,6 @@ public class BarActivity extends AppCompatActivity {
         xVals.add("");
         BarData data = new BarData(xVals, dataSets);
         chart.setData(data);
-        chart.setDescription("ffs");
         chart.invalidate();
     }
 }

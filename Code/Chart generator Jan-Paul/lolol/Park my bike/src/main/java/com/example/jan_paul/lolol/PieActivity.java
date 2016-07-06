@@ -32,6 +32,7 @@ import Design_Patterns.*;
 public class PieActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
     public IOptionVisitor<Data, Data> the_visitor = new OptionVisitor<Data>();
+    boolean colored = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +52,25 @@ public class PieActivity extends AppCompatActivity {
 
     public void loadChart(int id){
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
+        PieChart chart = (PieChart) findViewById(R.id.piechart);
         databaseAccess.open();
         List<Data> dataaa;
-        if (id == 2131493015) {
+        if (id == 2131493025) {
             dataaa = databaseAccess.getMostStolenBrands();
+            chart.setDescription("Most stolen brands");
         }
-        else if (id == 2131493016){
+        else if (id == 2131493026){
             dataaa = databaseAccess.getMostStolenColors();
+            chart.setDescription("Most stolen colors");
+            colored = true;
         }
         else {
             //this will never happen but whatever
             dataaa = databaseAccess.getMostfietstrommels();
+            chart.setDescription(Integer.toString(id));
         }
 
         databaseAccess.close();
-        PieChart chart = (PieChart) findViewById(R.id.piechart);
         chart.animateX(2000); //animatie van 3 secs
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<Entry> yVals = new ArrayList<Entry>();
@@ -76,28 +81,25 @@ public class PieActivity extends AppCompatActivity {
         while (thenewsome.IsSome() == true && counter < 10) {
             try {
                 Data d = thenewsome.Visit(the_visitor);
-                yVals.add(new Entry(d.value, counter));
+                Entry e = new Entry(d.value, counter);
+                yVals.add(e);
                 xVals.add(d.naam);
                 thenewsome = adaptedlist.GetNext();
-                counter = counter + 1;
             }
             catch (Exception e){}
+            counter = counter + 1;
         }
 
         PieDataSet dataSets = new PieDataSet(yVals, "");
-
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
-
         for (int c : ColorTemplate.JOYFUL_COLORS)
             colors.add(c);
-
         dataSets.setColors(colors);
         PieData data = new PieData(xVals, dataSets);
 
         chart.setData(data);
-        chart.setDescription("");
         chart.invalidate();
     }
 }
