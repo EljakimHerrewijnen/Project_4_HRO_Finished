@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onStop();
     }
 
-    public void onNeighbourhoods(View v){
+    public void onBar(View v){
         Intent intent = new Intent(this, BarActivity.class);
         id = v.getId();
         startActivity(intent);
@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements
     public void onLine(View v){
         Intent intent = new Intent(this, LineActivity.class);
         id = v.getId();
+        startActivity(intent);
+    }
+
+    public void onGpsToCalendar(View v){
+        Intent intent = new Intent(this, GpsActivity.class);
         startActivity(intent);
     }
 

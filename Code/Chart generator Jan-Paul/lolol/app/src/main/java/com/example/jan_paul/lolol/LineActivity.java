@@ -68,8 +68,8 @@ public class LineActivity extends AppCompatActivity {
             counter = counter + 1;
             xVals.add(d.naam);
         }
-
         LineDataSet setComp1 = new LineDataSet(valsComp1, "bicycles stolen");
+        setComp1.setDrawFilled(true);
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setComp1);
@@ -77,7 +77,7 @@ public class LineActivity extends AppCompatActivity {
         float min = 0; //lowest x value
 
         LineData data = new LineData(xVals, dataSets);
-        chart.animateX(2000); //animatie van 3 secs
+        chart.animateY(2000); //animatie van 3 secs
         chart.setData(data);
         chart.invalidate();
     }

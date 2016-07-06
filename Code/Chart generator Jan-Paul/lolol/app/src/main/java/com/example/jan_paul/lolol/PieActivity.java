@@ -20,13 +20,18 @@ import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.apache.poi.ss.formula.functions.T;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.List;
+
+import Design_Patterns.*;
 
 public class PieActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
+    public IOptionVisitor<Data, Data> the_visitor = new OptionVisitor<Data>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +70,18 @@ public class PieActivity extends AppCompatActivity {
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<Entry> yVals = new ArrayList<Entry>();
 
-        int counter = 8; // maximum brands that show up in the pie chart
-        for(Iterator<Data> i = dataaa.iterator(); i.hasNext() && counter != 0; ) {
-            Data d = i.next();
-            yVals.add(new Entry(d.value, counter));
-            counter = counter - 1;
-            xVals.add(d.naam);
+        int counter = 0; // maximum brands that show up in the pie chart
+        Adapted_List<Data> adaptedlist = new Adapted_List(dataaa);
+        Option<Data> thenewsome  = adaptedlist.GetNext();
+        while (thenewsome.IsSome() == true && counter < 10) {
+            try {
+                Data d = thenewsome.Visit(the_visitor);
+                yVals.add(new Entry(d.value, counter));
+                xVals.add(d.naam);
+                thenewsome = adaptedlist.GetNext();
+                counter = counter + 1;
+            }
+            catch (Exception e){}
         }
 
         PieDataSet dataSets = new PieDataSet(yVals, "");
