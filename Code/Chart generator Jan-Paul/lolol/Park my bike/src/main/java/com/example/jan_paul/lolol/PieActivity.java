@@ -51,21 +51,24 @@ public class PieActivity extends AppCompatActivity {
 
     public void loadChart(int id){
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
+        PieChart chart = (PieChart) findViewById(R.id.piechart);
         databaseAccess.open();
         List<Data> dataaa;
-        if (id == 2131493015) {
+        if (id == 2131493025) {
             dataaa = databaseAccess.getMostStolenBrands();
+            chart.setDescription("Most stolen brands");
         }
-        else if (id == 2131493016){
+        else if (id == 2131493026){
             dataaa = databaseAccess.getMostStolenColors();
+            chart.setDescription("Most stolen colors");
         }
         else {
             //this will never happen but whatever
             dataaa = databaseAccess.getMostfietstrommels();
+            chart.setDescription(Integer.toString(id));
         }
 
         databaseAccess.close();
-        PieChart chart = (PieChart) findViewById(R.id.piechart);
         chart.animateX(2000); //animatie van 3 secs
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<Entry> yVals = new ArrayList<Entry>();
@@ -79,9 +82,9 @@ public class PieActivity extends AppCompatActivity {
                 yVals.add(new Entry(d.value, counter));
                 xVals.add(d.naam);
                 thenewsome = adaptedlist.GetNext();
-                counter = counter + 1;
             }
             catch (Exception e){}
+            counter = counter + 1;
         }
 
         PieDataSet dataSets = new PieDataSet(yVals, "");
@@ -97,7 +100,6 @@ public class PieActivity extends AppCompatActivity {
         PieData data = new PieData(xVals, dataSets);
 
         chart.setData(data);
-        chart.setDescription("");
         chart.invalidate();
     }
 }
