@@ -23,44 +23,43 @@ public class FixMonthOrder {
         Adapted_List<Data> adaptedlist = new Adapted_List(col);
         Option<Data> thenewsome  = adaptedlist.GetNext();
         List<Data> copy = new ArrayList<>(col);
-
-        while (thenewsome.IsSome() == true) {
+        while (thenewsome.IsSome()) {
             try {
                 Data d = thenewsome.Visit(the_visitor);
-                if (d.naam == "Januari"){
+                if (d.naam.equals("Januari")){
                     copy.set(0, d);
                 }
-                else if (d.naam == "Februari"){
+                else if (d.naam.equals("Februari")){
                     copy.set(1, d);
                 }
-                else if (d.naam == "Maart"){
+                else if (d.naam.equals("Maart")){
                     copy.set(2, d);
                 }
-                else if (d.naam == "April"){
+                else if (d.naam.equals("April")){
                     copy.set(3, d);
                 }
-                else if (d.naam == "Mei"){
+                else if (d.naam.equals("Mei")){
                     copy.set(4, d);
                 }
-                else if (d.naam == "Juni"){
+                else if (d.naam.equals("Juni")){
                     copy.set(5, d);
                 }
-                else if (d.naam == "Juli"){
+                else if (d.naam.equals("Juli")){
                     copy.set(6, d);
                 }
-                else if (d.naam == "Augustus"){
+                else if (d.naam.equals("Augustus")){
                     copy.set(7, d);
                 }
-                else if (d.naam == "September"){
+                else if (d.naam.equals("September")){
                     copy.set(8, d);
                 }
-                else if (d.naam == "Oktober"){
+                else if (d.naam.equals("Oktober")){
                     copy.set(9, d);
                 }
-                else if (d.naam == "November"){
+                else if (d.naam.equals("November")){
                     copy.set(10, d);
                 }
-                else if (d.naam == "December"){
+                else if (d.naam.equals("December")){
                     copy.set(11, d);
                 }
                 thenewsome = adaptedlist.GetNext();
