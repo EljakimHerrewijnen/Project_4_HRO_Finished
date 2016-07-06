@@ -32,6 +32,7 @@ import Design_Patterns.*;
 public class PieActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
     public IOptionVisitor<Data, Data> the_visitor = new OptionVisitor<Data>();
+    boolean colored = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class PieActivity extends AppCompatActivity {
         else if (id == 2131493026){
             dataaa = databaseAccess.getMostStolenColors();
             chart.setDescription("Most stolen colors");
+            colored = true;
         }
         else {
             //this will never happen but whatever
@@ -79,7 +81,8 @@ public class PieActivity extends AppCompatActivity {
         while (thenewsome.IsSome() == true && counter < 10) {
             try {
                 Data d = thenewsome.Visit(the_visitor);
-                yVals.add(new Entry(d.value, counter));
+                Entry e = new Entry(d.value, counter);
+                yVals.add(e);
                 xVals.add(d.naam);
                 thenewsome = adaptedlist.GetNext();
             }
@@ -88,14 +91,11 @@ public class PieActivity extends AppCompatActivity {
         }
 
         PieDataSet dataSets = new PieDataSet(yVals, "");
-
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
-
         for (int c : ColorTemplate.JOYFUL_COLORS)
             colors.add(c);
-
         dataSets.setColors(colors);
         PieData data = new PieData(xVals, dataSets);
 

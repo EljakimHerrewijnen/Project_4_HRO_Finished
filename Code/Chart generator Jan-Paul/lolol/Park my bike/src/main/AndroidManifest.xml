@@ -21,14 +21,12 @@
 
             <service
                 android:name=".FetchAddressIntentService"
-                android:exported="false"/>
-
-
+                android:exported="false" />
         </activity>
-        <activity android:name=".BarActivity"></activity>
-        <activity android:name=".PieActivity"></activity>
-        <activity android:name=".LineActivity"></activity>
-        <activity android:name=".GpsActivity"></activity>
+        <activity android:name=".BarActivity" />
+        <activity android:name=".PieActivity" />
+        <activity android:name=".LineActivity" />
+        <activity android:name=".GpsActivity" />
     </application>
 
 </manifest>
