@@ -11,7 +11,7 @@ namespace Parser_Project_4
 {
     class DatabaseConnection
     {
-            public static void ConnectDatabase(string IPAddress, string Port, string Database, string Username, string Password)
+            public static void ConnectDatabase(string IPAddress, string Port, string Username, string Password, string Database)
             {
                 try
                 {
@@ -35,7 +35,7 @@ namespace Parser_Project_4
                 }
             }
 
-            public void SendQuery(string IPAddress, string Port, string Username, string Password, string Database)
+            public static void SendQuery(string IPAddress, string Port, string Username, string Password, string Database)
             {
             string Output_TB = Form1._Form1.TB_Output;
                 int indexchar = 2;

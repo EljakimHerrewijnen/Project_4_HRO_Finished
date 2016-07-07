@@ -33,6 +33,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parseCSVFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fietsenDiefstalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fietsenTrommelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parseFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,8 +54,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.button2 = new System.Windows.Forms.Button();
-            this.fietsenDiefstalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fietsenTrommelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_TestConnection = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -97,6 +97,20 @@
             this.parseCSVFileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.parseCSVFileToolStripMenuItem.Text = "Parse .CSV File";
             this.parseCSVFileToolStripMenuItem.Click += new System.EventHandler(this.parseCSVFileToolStripMenuItem_Click);
+            // 
+            // fietsenDiefstalToolStripMenuItem
+            // 
+            this.fietsenDiefstalToolStripMenuItem.Name = "fietsenDiefstalToolStripMenuItem";
+            this.fietsenDiefstalToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.fietsenDiefstalToolStripMenuItem.Text = "FietsenDiefstal";
+            this.fietsenDiefstalToolStripMenuItem.Click += new System.EventHandler(this.fietsenDiefstalToolStripMenuItem_Click);
+            // 
+            // fietsenTrommelsToolStripMenuItem
+            // 
+            this.fietsenTrommelsToolStripMenuItem.Name = "fietsenTrommelsToolStripMenuItem";
+            this.fietsenTrommelsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.fietsenTrommelsToolStripMenuItem.Text = "FietsenTrommels";
+            this.fietsenTrommelsToolStripMenuItem.Click += new System.EventHandler(this.fietsenTrommelsToolStripMenuItem_Click);
             // 
             // parseFileToolStripMenuItem
             // 
@@ -241,19 +255,6 @@
             this.button2.Text = "Copy to clipboard";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // fietsenDiefstalToolStripMenuItem
-            // 
-            this.fietsenDiefstalToolStripMenuItem.Name = "fietsenDiefstalToolStripMenuItem";
-            this.fietsenDiefstalToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.fietsenDiefstalToolStripMenuItem.Text = "FietsenDiefstal";
-            this.fietsenDiefstalToolStripMenuItem.Click += new System.EventHandler(this.fietsenDiefstalToolStripMenuItem_Click);
-            // 
-            // fietsenTrommelsToolStripMenuItem
-            // 
-            this.fietsenTrommelsToolStripMenuItem.Name = "fietsenTrommelsToolStripMenuItem";
-            this.fietsenTrommelsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.fietsenTrommelsToolStripMenuItem.Text = "FietsenTrommels";
             // 
             // Btn_TestConnection
             // 

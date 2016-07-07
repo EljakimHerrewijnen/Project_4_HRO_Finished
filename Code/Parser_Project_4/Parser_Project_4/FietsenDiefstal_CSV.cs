@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Parser_Project_4
+namespace Parser_Project_4   //Made By Eljakim
 {
     class FietsenDiefstal_CSV
     {
 
-        public static void OpenFile(string ExcelFile)
+        public static void OpenFile(string ExcelFile)  //Gives the Excelfile
         {
             int TempCounter = 0;
             string Tempstring ="";
@@ -17,7 +17,7 @@ namespace Parser_Project_4
             string Tempstring3 = "";
             int ExcelLength = 0;
             
-            string Query = "CREATE TABLE IF NOT EXISTS FietsenDiefstal_CSV(Voorval_nummer varchar(256), Kennisname varchar(256), MK varchar(256), MK_omschrijving varchar(256), Poging varchar(256), District varchar(256), Werkgebied varchar(256), Plaats varchar(256), Buurt varchar(256), Straat varchar(256), Begin_dagsoort varchar(256), Begindatum varchar(256), Begintijd varchar(256), Eind_dagsoort varchar(256),Einddatum varchar(256), Eindtijd varchar(256), Gemiddelde_jaar varchar(256), Gemiddelde_maand varchar(256), Gemiddelde_dagsoort varchar(256), Gemiddelde_dagdeel_6_uren varchar(256), Trefwoord varchar(256), object varchar(256), merk varchar(256), type varchar(256), kleur varchar(256));\n ";
+            string Query = "CREATE TABLE IF NOT EXISTS FietsenDiefstal_CSV(Voorval_nummer varchar(256), Kennisname varchar(256), MK varchar(256), MK_omschrijving varchar(256), Poging varchar(256), District varchar(256), Werkgebied varchar(256), Plaats varchar(256), Buurt varchar(256), Straat varchar(256), Begin_dagsoort varchar(256), Begindatum varchar(256), Begintijd varchar(256), Eind_dagsoort varchar(256),Einddatum varchar(256), Eindtijd varchar(256), Gemiddelde_jaar varchar(256), Gemiddelde_maand varchar(256), Gemiddelde_dagsoort varchar(256), Gemiddelde_dagdeel_6_uren varchar(256), Trefwoord varchar(256), object varchar(256), merk varchar(256), type varchar(256), kleur varchar(256));\n ";  //Because I am lazy
             string ColorFilter = "";
             string NumberFilter = "";
 
@@ -31,12 +31,11 @@ namespace Parser_Project_4
                 if(Character == ",")
                 {
                     ExcelLength++;
-                    if (TempCounter == 1){ Query += "INSERT INTO FietsenDiefstal_CSV (Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\n VALUES("; if (ExcelLength > 2) { Query += (char)39 + NumberFilter + (char)39 + ", "; } } //(Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\nVALUES("; }
+                    if (TempCounter == 1){ Query += "INSERT INTO FietsenDiefstal_CSV (Voorval_nummer, Kennisname, MK, MK_omschrijving, Poging, District, Werkgebied, Plaats, Buurt, Straat, Begin_dagsoort, Begindatum, Begintijd, Eind_dagsoort, Einddatum, Eindtijd, Gemiddelde_jaar, Gemiddelde_maand, Gemiddelde_dagsoort, Gemiddelde_dagdeel_6_uren, Trefwoord, object, merk, type, kleur)\n VALUES("; if (ExcelLength > 2) { Query += (char)39 + NumberFilter + (char)39 + ", "; } } 
                     TempCounter++;
                     if (Tempstring == "") { Tempstring = " "; }
                     if (TempCounter != 25) { Tempstring2 += (char)39 + Tempstring + (char)39 + " ,"; }
                     Tempstring3 = Tempstring;
-                    Console.WriteLine(TempCounter.ToString() + " " + Tempstring3);
 
 
                     if (TempCounter == 25)
@@ -61,6 +60,7 @@ namespace Parser_Project_4
                 else { Tempstring += Character; }
             }
             Form1._Form1.SetTBText(Query);
+            Console.WriteLine("Done...");
         }
     }
 }
