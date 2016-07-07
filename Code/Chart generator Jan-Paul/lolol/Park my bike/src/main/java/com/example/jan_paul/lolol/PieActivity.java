@@ -92,10 +92,14 @@ public class PieActivity extends AppCompatActivity {
 
         PieDataSet dataSets = new PieDataSet(yVals, "");
         ArrayList<Integer> colors = new ArrayList<Integer>();
+        
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
+
         for (int c : ColorTemplate.JOYFUL_COLORS)
             colors.add(c);
+
+
         dataSets.setColors(colors);
         PieData data = new PieData(xVals, dataSets);
 

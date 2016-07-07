@@ -26,6 +26,7 @@ import Design_Patterns.OptionVisitor;
 public class BarActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
     public IOptionVisitor<Data, Data> the_visitor = new OptionVisitor<Data>();
+    public IOptionVisitor<Data2, Data2> the_visitor2 = new OptionVisitor<Data2>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class BarActivity extends AppCompatActivity {
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         ArrayList<String> xVals = new ArrayList<String>();
 
-        if (id == 2131493024) {
+        if (id == 2131558583) {
             chart.setDescription("5 neigbourhoods with most fietstrommels");
             List<Data> dataaa;
             dataaa = databaseAccess.getMostfietstrommels();
@@ -78,33 +79,42 @@ public class BarActivity extends AppCompatActivity {
                 counter = counter + 1;
             }
 
+
         }
-        else if (id == 2131493028){
+        else if (id == 2131558587){
             chart.setDescription("Most stolen bikes + amount of fietscontainers");
             List<Data2> dataaa;
             dataaa = databaseAccess.getMostStolenAndContainers();
             databaseAccess.close();
             int counter = 0;
-            Adapted_List<Data> adaptedlist = new Adapted_List(dataaa);
-            Option<Data> thenewsome  = adaptedlist.GetNext();
-            for(Iterator<Data2> i = dataaa.iterator(); i.hasNext(); ) {
-                Data2 d = i.next();
-                ArrayList<BarEntry> a1 = new ArrayList<BarEntry>();
-                ArrayList<BarEntry> a2 = new ArrayList<BarEntry>();
-                a1.add(new BarEntry(d.value1, 0));
-                a2.add(new BarEntry(d.value2, 0));
-                BarDataSet s1 = new BarDataSet(a1, d.naam);
-                BarDataSet s2 = new BarDataSet(a2, d.naam);
-                s1.setAxisDependency(YAxis.AxisDependency.LEFT);
-                ArrayList<Integer> colors = new ArrayList<Integer>();
-                for (int c : ColorTemplate.VORDIPLOM_COLORS)
-                    colors.add(c);
-                s1.setColor(colors.get(1));
-                s2.setColor(colors.get(3));
+            Adapted_List<Data2> adaptedlist = new Adapted_List(dataaa);
+            Option<Data2> thenewsome  = adaptedlist.GetNext();
+            while (thenewsome.IsSome() == true) {
+                try {
+                    Data2 d = thenewsome.Visit(the_visitor2);
+                    ArrayList<BarEntry> a1 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> a2 = new ArrayList<BarEntry>();
+                    a1.add(new BarEntry(d.value1, 0));
+                    a2.add(new BarEntry(d.value2, 0));
+                    BarDataSet s1 = new BarDataSet(a1, d.naam);
+                    BarDataSet s2 = new BarDataSet(a2, "");
+                    s1.setAxisDependency(YAxis.AxisDependency.LEFT);
+                    ArrayList<Integer> colors = new ArrayList<Integer>();
+                    for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                        colors.add(c);
+                    s1.setColor(colors.get(1));
+                    s2.setColor(colors.get(3));
+                    dataSets.add(s1);
+                    dataSets.add(s2);
+                    thenewsome = adaptedlist.GetNext();
+                }
+                catch (Exception e){}
                 counter = counter + 1;
-                dataSets.add(s1);
-                dataSets.add(s2);
             }
+        }
+
+        else{
+            chart.setDescription("error, wrong button id: " + Integer.toString(id));
         }
         xVals.add("");
         BarData data = new BarData(xVals, dataSets);
