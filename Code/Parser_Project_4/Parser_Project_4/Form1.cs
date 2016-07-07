@@ -20,6 +20,12 @@ namespace Parser_Project_4
         public string Query { set { query = value; } }
         public string filepath { get { return filepath; } set { Filepath = value; } }
         public string excelfile { get { return excelfile;  } set { excelfile = value; } }
+        public string TB_Output { get { return textBox1.Text; } }
+        
+        public void SetTBText(string text)
+        {
+            textBox1.Text = text;
+        }
         public Form1()
         {
             InitializeComponent();
@@ -29,16 +35,6 @@ namespace Parser_Project_4
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void RB_Fietsendiefstal_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RB_Fietstrommels.Checked == true) { RB_Fietstrommels.Checked = false; }
-        }
-
-        private void RB_Fietstrommels_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RB_Fietsendiefstal.Checked == true) { RB_Fietsendiefstal.Checked = false; }
         }
 
         public void newFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,15 +53,17 @@ namespace Parser_Project_4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(Filepath);
+            Console.WriteLine("Sending Query");
+            DatabaseConnection.SendQuery(TB_IPaddr.Text, TB_Port.Text, TB_Uname.Text, TB_Pass.Text, TB_Datab.Text);
         }
         public void ParseAFile()
         {
             Fietsendiefstal fietsendiefstal = new Fietsendiefstal();
             Fietsendiefstal.OpenFile();
             textBox1.Text = query;
-
         }
+
+
         public void ParseCSVFile(string ExcelFile)
         {
             FietsenDiefstal_CSV fietsendiefstalcsv = new FietsenDiefstal_CSV();
@@ -85,20 +83,58 @@ namespace Parser_Project_4
 
         private void parseCSVFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
+
+        }
+
+        private void fietsenDiefstalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "CSV Files (.csv)|*.csv";
             openFileDialog1.FilterIndex = 1;
+            Console.WriteLine("Opening File...");
             openFileDialog1.Multiselect = false;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
                 string ExcelFile = openFileDialog1.FileName;
                 string ExcelPath = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
                 using (StreamReader sr = new StreamReader(ExcelFile))
                 {
                     ExcelFile = sr.ReadToEnd();
-                    textBox1.Text = ExcelFile;
+                    Console.WriteLine("Reading File...");
                 }
-                DialogResult messageboxresult = MessageBox.Show("Do you want to parse the selected file immediately?", "Parse File",  MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (messageboxresult == DialogResult.Yes) { ParseCSVFile(ExcelFile); } }
+                DialogResult messageboxresult = MessageBox.Show("Do you want to parse the selected file immediately?", "Parse File", MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (messageboxresult == DialogResult.Yes) { ParseCSVFile(ExcelFile); }
+            }
 
+        }
+
+        public void Btn_TestConnection_Click(object sender, EventArgs e)
+        {
+            DatabaseConnection.ConnectDatabase(TB_IPaddr.Text, TB_Port.Text, TB_Uname.Text, TB_Pass.Text, TB_Datab.Text);
+        }
+
+        public void Parse_FietsenTrommels(string ExcelFile)
+        {
+            Fietstrommels_CSV fietstrommels_csv = new Fietstrommels_CSV();
+            Fietstrommels_CSV.OpenFile(ExcelFile);
+        }
+        private void fietsenTrommelsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "CSV Files (.csv)|*.csv";
+            openFileDialog1.FilterIndex = 1;
+            Console.WriteLine("Opening File...");
+            openFileDialog1.Multiselect = false;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string ExcelFile = openFileDialog1.FileName;
+                string ExcelPath = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
+                using (StreamReader sr = new StreamReader(ExcelFile))
+                {
+                    ExcelFile = sr.ReadToEnd();
+                    Console.WriteLine("Reading File...");
+                }
+                DialogResult messageboxresult = MessageBox.Show("Do you want to parse the selected file immediately?", "Parse File", MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (messageboxresult == DialogResult.Yes) { Parse_FietsenTrommels(ExcelFile); }
+            }
         }
     }
 }
